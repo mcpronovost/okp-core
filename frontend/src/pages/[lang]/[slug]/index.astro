@@ -1,0 +1,37 @@
+---
+import parse from "html-react-parser";
+import Layout from "@/layouts/Layout.astro";
+import axios from "@/scripts/utils/api.js";
+
+const { apiwagtail } = Astro.locals;
+const { lang, slug } = Astro.params;
+const fields = "title,content_html";
+let page;
+
+try {
+  const res = await axios.get(`${apiwagtail}/pages/?type=front.HomePage&slug=${slug}&fields=${fields}&locale=${lang}`);
+  if (res.data?.items.length) {
+    page = res.data.items[0]
+    console.log(page)
+  } else {
+    throw 404
+  }
+} catch (e) {
+  console.log(e)
+  return Astro.redirect("/", 307)
+}
+---
+
+<Layout title={page.title}>
+  <main>
+    <h1>Current Page <span class="text-gradient">{page.title}</span></h1>
+    <div class="instructions">
+      <img src="" alt ="" />
+      <div set:html={page.content_html}></div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  @import "@/styles/index.scss";
+</style>

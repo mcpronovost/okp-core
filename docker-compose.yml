@@ -1,0 +1,55 @@
+version: "3.3"
+
+services:
+  db:
+    image: postgis/postgis:15-3.3
+    volumes:
+      - ./data/db_okp:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: .
+    command: sh -c "python manage.py runserver 0.0.0.0:8080"
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+    environment:
+      - POSTGRES_DB=db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - DJANGO_SETTINGS_MODULE=okp.settings_dev
+      - STAGE=local
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend
+    # command: sh -c "node ./dist/server/entry.mjs"
+    command: sh -c "npm run start"
+    volumes:
+      - ./frontend:/app/frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  nginx:
+    build: ./nginx
+    volumes:
+      - ./nginx:/app/nginx
+    ports:
+      - "8000:8000"
+    depends_on:
+      - frontend
+      - backend
+
+networks:
+  default:
