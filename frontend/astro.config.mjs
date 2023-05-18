@@ -6,7 +6,7 @@ import react from "@astrojs/react";
 export default defineConfig({
   output: "server",
   server: {
-    port: 3000
+    port: 8080
   },
   adapter: node({
     mode: "standalone"
@@ -18,6 +18,11 @@ export default defineConfig({
     react()
   ],
   vite: {
+    server: {
+      fs: {
+        allow: [".."]
+      }
+    },
     define: {
       "__REACT_DEVTOOLS_GLOBAL_HOOK__": "({ isDisabled: true })"
     }

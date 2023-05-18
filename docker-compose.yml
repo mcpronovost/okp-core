@@ -1,10 +1,24 @@
 version: "3.3"
 
 services:
+  traefik:
+    image: "traefik:v2.10"
+    ports:
+      - 80:80
+      - 8080:8080
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    command:
+      - "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+
   db:
     image: postgis/postgis:15-3.3
     volumes:
-      - ./data/db_okp:/var/lib/postgresql/data
+      - ./data_db:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=db
       - POSTGRES_USER=postgres
@@ -13,12 +27,16 @@ services:
       - "5432:5432"
 
   backend:
-    build: .
-    command: sh -c "python manage.py runserver 0.0.0.0:8080"
+    build: backend/.
+    command: sh -c "python manage.py runserver 0.0.0.0:8000"
     volumes:
-      - .:/app
+      - "./backend:/app"
+    expose:
+      - 8000
     ports:
-      - "8080:8080"
+      - "8000:8000"
+    depends_on:
+      - db
     environment:
       - POSTGRES_DB=db
       - POSTGRES_USER=postgres
@@ -27,29 +45,23 @@ services:
       - STAGE=local
     env_file:
       - .env
-    depends_on:
-      - db
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.backend.rule=Host(`backend.localhost`)"
+      - "traefik.http.routers.backend.entrypoints=web"
 
   frontend:
-    build: ./frontend
-    # command: sh -c "node ./dist/server/entry.mjs"
-    command: sh -c "npm run start"
+    build: frontend/.
+    command: sh -c "astro dev --host"
     volumes:
-      - ./frontend:/app/frontend
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
+      - "./frontend:/app:rw"
+    expose:
+      - 8080
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=Host(`localhost`)"
+      - "traefik.http.routers.frontend.entrypoints=web"
 
-  nginx:
-    build: ./nginx
-    volumes:
-      - ./nginx:/app/nginx
-    ports:
-      - "8000:8000"
-    depends_on:
-      - frontend
-      - backend
-
-networks:
-  default:
+volumes:
+  data_db:
+  static:

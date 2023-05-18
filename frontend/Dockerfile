@@ -1,17 +1,10 @@
-FROM node:lts AS build
+FROM node:20.1.0
 
-WORKDIR /app/frontend
+# for caching optimisations
+COPY package*.json /
+RUN npm install
 
-COPY ./package.json ./
-COPY ./package-lock.json ./
+COPY . /app
+WORKDIR /app
 
-RUN npm install --silent
-
-COPY . .
-
-RUN npm run build -- --mode custom
-
-COPY . .
-
-ENV HOST=0.0.0.0
-ENV PORT=3000
+ENV PATH=/node_modules/.bin:$PATH
