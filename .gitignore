@@ -1,4 +1,5 @@
+.env
 venv/
 data/
-.env
 static/
+data_db/
