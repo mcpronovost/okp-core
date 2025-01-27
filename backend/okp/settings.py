@@ -35,12 +35,15 @@ INSTALLED_APPS = [
     # ...
     # okp
     "okp.users",
+    # cleanup
+    "django_cleanup.apps.CleanupConfig",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -153,7 +156,7 @@ TIME_FORMAT = "H:i"
 
 FORMAT_MODULE_PATH = ["okp.formats"]
 
-LOCALE_PATHS = [BASE_DIR / "locales"]
+LOCALE_PATHS = [BASE_DIR / "okp" / "locale"]
 
 
 # Static files (CSS, JavaScript, Images)
@@ -163,7 +166,7 @@ STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_URL = "media/"
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = BASE_DIR / "staticmedias"
 
 WHITENOISE_KEEP_ONLY_HASHED_FILES = True
 
