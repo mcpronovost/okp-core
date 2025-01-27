@@ -6,8 +6,18 @@ from django.core.files import File
 from django.utils.translation import gettext_lazy as _
 
 
-def okpImageSizeValidator(value):
-    max_size = 2 * 1024 * 1024  # 2MB
+def okpImageSizeValidator(value, max=2):
+    """
+    Validate the size of an image.
+
+    Args:
+        value (File): The image file to validate.
+        max (int): The maximum size of the image in MB.
+
+    Raises:
+        ValidationError: If the image size is greater than the maximum size.
+    """
+    max_size = max * 1024 * 1024  # 2MB
     if value.size > max_size:
         raise ValidationError(_("File size must be no more than 2MB."))
 

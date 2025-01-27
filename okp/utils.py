@@ -2,31 +2,49 @@ from django.utils.text import slugify
 
 
 def get_abbr(string, max=2):
+    """
+    Get an abbreviation from a string.
+
+    Args:
+        string (str): The string to get an abbreviation from.
+        max (int): The maximum length of the abbreviation.
+
+    Returns:
+        str: The abbreviation.
+    """
     parts = string.split()
     if not parts:
-        return ""
+        return string
 
-    abbr = ""
-    if len(parts) >= 2:
-        # First letter of first word
-        abbr += parts[0][0]
+    # Handle single word case
+    if len(parts) == 1:
+        return parts[0][0].upper()
 
-        # For middle words
-        for part in parts[1:-1]:
-            if len(abbr) >= max:
-                break
-            abbr += part[0]
+    # Start with first and last letters
+    abbr = [parts[0][0]]
+    if len(parts) > 1:
+        abbr.append(parts[-1][0])
 
-        # Last letter if we still have room
-        if len(abbr) < max:
-            abbr += parts[-1][0]
-    else:
-        abbr = parts[0][0]
+    # Fill middle letters if we have room
+    if len(abbr) < max:
+        middle_letters = (word[0] for word in parts[1:-1])
+        abbr[1:1] = list(middle_letters)[:max - len(abbr)]
 
-    return abbr.upper()[:max]
+    return "".join(abbr).upper()[:max]
 
 
 def get_slug(string, instance, model):
+    """
+    Get a slug from a string.
+
+    Args:
+        string (str): The string to get a slug from.
+        instance (Model): The instance to check for uniqueness.
+        model (Model): The model to check for uniqueness.
+
+    Returns:
+        str: The slug.
+    """
     base_slug = slugify(string)
     slug = base_slug
     counter = 1
