@@ -3,14 +3,27 @@
 .env
 
 # Static files
-backend/staticfiles
-backend/media
+staticfiles/
+media/
+
+# Vite
+okp/admin/static/
+okp/admin/frontend/node_modules/
+okp/admin/frontend/package-lock.json
 
 # Logs
 logs/
 
-# Files
-.DS_Store
-
 # Database
-db.sqlite3
+*.sqlite3
+
+# Editor directories and files
+.vscode/
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
