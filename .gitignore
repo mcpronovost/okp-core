@@ -1,0 +1,16 @@
+# Virtual environment
+.venv
+.env
+
+# Static files
+backend/staticfiles
+backend/media
+
+# Logs
+logs/
+
+# Files
+.DS_Store
+
+# Database
+db.sqlite3
