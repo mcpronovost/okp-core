@@ -1,0 +1,72 @@
+# French Translation.
+# Copyright (C) 2025 mcpronovost
+# This file is distributed under the same license as the OKP package.
+# mcpronovost, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-27 10:54-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: mcpronovost <mcpronovostkurkiency@gmail.com>\n"
+"Language-Team: French <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: okp/users/admin.py:18
+msgid "Identity"
+msgstr "Identité"
+
+#: okp/users/admin.py:26
+msgid "Authorizations"
+msgstr "Autorisations"
+
+#: okp/users/admin.py:36
+msgid "Permissions"
+msgstr "Permissions"
+
+#: okp/users/admin.py:45
+msgid "Important dates"
+msgstr "Dates importantes"
+
+#: okp/users/models.py:7
+msgid "Playername"
+msgstr "Nom de joueur"
+
+#: okp/users/models.py:14 okp/users/models.py:58
+msgid "Groups"
+msgstr "Groupes"
+
+#: okp/users/models.py:17
+msgid ""
+"The groups this user belongs to. A user will get all permissions granted to "
+"each of their groups."
+msgstr "Les groupes auxquels cet utilisateur appartient. Un utilisateur obtient toutes les permissions accordées à chacun de ses groupes."
+
+#: okp/users/models.py:24
+msgid "Created at"
+msgstr "Créé"
+
+#: okp/users/models.py:28
+msgid "Updated at"
+msgstr "Mis à jour"
+
+#: okp/users/models.py:33
+msgid "User"
+msgstr "Utilisateur"
+
+#: okp/users/models.py:34
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: okp/users/models.py:51
+msgid "Description"
+msgstr "Description"
+
+#: okp/users/models.py:57
+msgid "Group"
+msgstr "Groupe"
