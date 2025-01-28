@@ -58,7 +58,7 @@ class OkpUser(AbstractUser):
         validators=[okpImageSizeValidator],
     )
     groups = models.ManyToManyField(
-        "users.OkpGroup",
+        "okp_users.OkpGroup",
         related_name="user_set",
         related_query_name="user",
         verbose_name=_("Groups"),

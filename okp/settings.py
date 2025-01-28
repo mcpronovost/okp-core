@@ -56,9 +56,9 @@ ROOT_URLCONF = "okp.urls"
 
 WSGI_APPLICATION = "okp.wsgi.application"
 
-AUTH_USER_MODEL = "users.OkpUser"
+AUTH_USER_MODEL = "okp_users.OkpUser"
 
-AUTH_GROUP_MODEL = "users.OkpGroup"
+AUTH_GROUP_MODEL = "okp_users.OkpGroup"
 
 
 # TEMPLATES
@@ -68,7 +68,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            BASE_DIR / "okp" / "admin" / "static",
+            BASE_DIR / "okp" / "admin" / "templates",
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -178,3 +178,9 @@ WHITENOISE_KEEP_ONLY_HASHED_FILES = True
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+if DEBUG:
+    INTERNAL_IPS = [
+        "127.0.0.1",
+    ]

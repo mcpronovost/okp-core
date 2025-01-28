@@ -16,8 +16,13 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     # path("admin/", admin_site.urls),
     path(
+        "admin/<path:path>",
+        TemplateView.as_view(template_name="okp-admin/index.html"),
+        name="okp_admin_path"
+    ),
+    path(
         "admin/",
-        TemplateView.as_view(template_name="okp_admin/index.html"),
+        TemplateView.as_view(template_name="okp-admin/index.html"),
         name="okp_admin"
     ),
     # path("", include("pages.urls")),

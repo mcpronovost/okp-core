@@ -1,0 +1,23 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + Vue + Django</title>
+    <link rel="icon" type="image/svg+xml" href="{% static 'okp-admin/vite.svg' %}" />
+    {% if debug %}
+        <!-- Development: Load Vite Dev Server -->
+        <script type="module" src="http://localhost:5173/@vite/client"></script>
+        <script type="module" src="http://localhost:5173/src/main.js"></script>
+    {% else %}
+        <!-- Production: Load Built Files -->
+        <link rel="stylesheet" href="{% static 'okp-admin/assets/css/index.css' %}">
+        <script type="module" src="{% static 'okp-admin/assets/js/index.js' %}"></script>
+    {% endif %}
+</head>
+<body>
+    <div id="okp-admin"></div>
+</body>
+</html>
