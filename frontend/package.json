@@ -1,8 +1,16 @@
 {
   "name": "okp-core",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "author": "mcpronovost <mcpronovostkurkiency@gmail.com>",
+  "description": "Core project for okp.",
+  "homepage": "https://github.com/mcpronovost/okp-core",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mcpronovost/okp-core.git"
+  },
   "type": "module",
+  "license": "MIT",
+  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "vite build",
