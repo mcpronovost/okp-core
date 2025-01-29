@@ -1,5 +1,5 @@
 """
-WSGI config for okp project.
+WSGI config.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

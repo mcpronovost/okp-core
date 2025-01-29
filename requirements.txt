@@ -1,8 +1,7 @@
 asgiref==3.8.1
-Django==5.1.5
+Django==4.2.18
 django-cleanup==9.0.0
-pillow==11.1.0
 python-dotenv==1.0.1
 sqlparse==0.5.3
-tzdata==2025.1
+typing_extensions==4.12.2
 whitenoise==6.8.2

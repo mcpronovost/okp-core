@@ -1,5 +1,5 @@
 """
-Django settings for okp project.
+Django 5.1.5 settings.
 """
 
 import os
@@ -10,18 +10,17 @@ load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / "subdir".
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-# SECURITY
+ROOT_DIR = BASE_DIR.parent
 
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 DEBUG = os.getenv("DJANGO_DEBUG") == "True"
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS").split(",")
+ALLOWED_HOSTS = ["*"]
 
 
-# Application definition
+# Applications
+# https://docs.djangoproject.com/en/5.1/ref/applications/
 
 INSTALLED_APPS = [
     # django
@@ -34,11 +33,14 @@ INSTALLED_APPS = [
     # tiers
     # ...
     # okp
-    "okp.users",
-    "okp.admin",
+    # ...
     # cleanup
     "django_cleanup.apps.CleanupConfig",
 ]
+
+
+# Middlewares
+# https://docs.djangoproject.com/en/5.1/topics/http/middleware/
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -52,23 +54,15 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "okp.urls"
 
-WSGI_APPLICATION = "okp.wsgi.application"
-
-AUTH_USER_MODEL = "users.OkpUser"
-
-AUTH_GROUP_MODEL = "users.OkpGroup"
-
-
-# TEMPLATES
+# Templates
 # https://docs.djangoproject.com/en/5.1/ref/settings/#templates
 
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            BASE_DIR / "okp" / "admin" / "static",
+            ROOT_DIR / "frontend" / "dist",
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -83,17 +77,21 @@ TEMPLATES = [
 ]
 
 
-# STORAGES
+# Storage
 # https://docs.djangoproject.com/en/5.1/ref/settings/#storages
 
 STORAGES = {
     "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "BACKEND": "django.core.files.storage.StaticFilesStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
+
+ROOT_URLCONF = "okp.urls"
+
+WSGI_APPLICATION = "okp.wsgi.application"
 
 
 # Database
@@ -114,18 +112,20 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
+PASSWORD_VALIDATION = "django.contrib.auth.password_validation"
+
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME": f"{PASSWORD_VALIDATION}.UserAttributeSimilarityValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "NAME": f"{PASSWORD_VALIDATION}.MinimumLengthValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+        "NAME": f"{PASSWORD_VALIDATION}.CommonPasswordValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+        "NAME": f"{PASSWORD_VALIDATION}.NumericPasswordValidator",
     },
 ]
 
@@ -133,33 +133,22 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = os.getenv("LANGUAGE_CODE")
+LANGUAGE_CODE = "en"
 
 LANGUAGES = [
     ("en", "English"),
-    ("fr", "Français"),
+    ("fr", "French"),
 ]
 
-TIME_ZONE = os.getenv("TIME_ZONE")
+LOCALE_PATHS = [
+    BASE_DIR / "locale",
+]
+
+TIME_ZONE = "America/Toronto"
 
 USE_I18N = True
 
 USE_TZ = True
-
-USE_L10N = True
-
-# Date/Time formats
-DATETIME_FORMAT = "j F Y, H:i"
-SHORT_DATETIME_FORMAT = "Y-m-d H:i"
-
-DATE_FORMAT = "j F Y"
-SHORT_DATE_FORMAT = "Y-m-d"
-
-TIME_FORMAT = "H:i"
-
-FORMAT_MODULE_PATH = ["okp.formats"]
-
-LOCALE_PATHS = [BASE_DIR / "okp" / "locale"]
 
 
 # Static files (CSS, JavaScript, Images)
@@ -167,11 +156,12 @@ LOCALE_PATHS = [BASE_DIR / "okp" / "locale"]
 
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = [
+    ROOT_DIR / "frontend" / "dist" / "static",
+]
 
 MEDIA_URL = "media/"
-MEDIA_ROOT = BASE_DIR / "staticmedias"
-
-WHITENOISE_KEEP_ONLY_HASHED_FILES = True
+MEDIA_ROOT = BASE_DIR / "mediafiles"
 
 
 # Default primary key field type

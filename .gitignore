@@ -1,29 +1,15 @@
 # Virtual environment
-.venv
+.venv/
 .env
-
-# Static files
-staticfiles/
-staticmedias/
-
-# Vite
-okp/admin/static/
-okp/admin/frontend/node_modules/
-okp/admin/frontend/package-lock.json
-
-# Logs
-logs/
 
 # Database
 *.sqlite3
 
-# Editor directories and files
-.vscode/
-!.vscode/extensions.json
-.idea
+# Vite
+package-lock.json
+node_modules/
+.react-router/
+build/
+
+# macOS
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?

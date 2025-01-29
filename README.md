@@ -1,2 +1,1 @@
-# okp-core
-by mcpronovost
+# okp
