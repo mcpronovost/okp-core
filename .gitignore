@@ -8,8 +8,9 @@
 # Vite
 package-lock.json
 node_modules/
-.react-router/
 build/
+dist/
+.react-router/
 
 # macOS
 .DS_Store

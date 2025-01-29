@@ -62,6 +62,8 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
+            ROOT_DIR / "frontend" / "dev",
+        ] if DEBUG else [
             ROOT_DIR / "frontend" / "dist",
         ],
         "APP_DIRS": True,
