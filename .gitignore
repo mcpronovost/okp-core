@@ -10,7 +10,7 @@ package-lock.json
 node_modules/
 build/
 dist/
-.react-router/
+.vite/
 
 # macOS
 .DS_Store
