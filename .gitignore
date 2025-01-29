@@ -2,8 +2,10 @@
 .venv/
 .env
 
-# Database
+# Database and static files
 *.sqlite3
+staticfiles/
+mediafiles/
 
 # Vite
 package-lock.json
