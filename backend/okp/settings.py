@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     # tiers
     # ...
     # okp
+    # "okp.core",
+    # "okp.users",
     # ...
     # cleanup
     "django_cleanup.apps.CleanupConfig",
