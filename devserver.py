@@ -5,9 +5,12 @@ from pathlib import Path
 
 
 def start_server(python_exec, npm_exec, backend_path, frontend_path):
+    """
+    Start the backend and the frontend development servers.
+    """
     try:
-        print("Starting Django development server...")
-        # Start Django development server
+        print("Starting backend development server...")
+        # Start backend development server
         backend_process = subprocess.Popen(
             [python_exec, "backend/manage.py", "runserver"],
             cwd=backend_path,
@@ -37,6 +40,9 @@ def start_server(python_exec, npm_exec, backend_path, frontend_path):
             frontend_process.terminate()
 
 def run_backend(python_exec, backend_path, backend_args):
+    """
+    Run the backend development server with the given arguments.
+    """
     try:
         backend_process = subprocess.Popen(
             [python_exec, "backend/manage.py", *backend_args],
@@ -55,6 +61,9 @@ def run_backend(python_exec, backend_path, backend_args):
 
 
 def main():
+    """
+    Main function to start development servers or run backend with arguments.
+    """
     BASE_DIR = Path(__file__).resolve().parent
     backend_path = os.path.join(BASE_DIR)
     frontend_path = os.path.join(BASE_DIR, "frontend")
