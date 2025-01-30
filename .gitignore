@@ -4,8 +4,7 @@
 
 # Database and static files
 *.sqlite3
-staticfiles/
-mediafiles/
+backend/data/
 
 # Vite
 package-lock.json
