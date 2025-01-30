@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     "drf_spectacular",
     # okp
     "okp.core",
-    # "okp.users",
+    # "okp.auth",
     # ...
     # cleanup
     "django_cleanup.apps.CleanupConfig",
