@@ -58,6 +58,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "okp.core.middlewares.OkpAdminOrderMiddleware",
 ]
 
 
@@ -218,3 +219,21 @@ WHITENOISE_KEEP_ONLY_HASHED_FILES = True
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# OKP Admin Order
+
+OKP_ADMIN_ORDER_APPS = {
+    "okp_auth": 1,
+    "okp_blog": 2,
+    "okp_courrier": 3,
+    "okp_forum": 4,
+    "admin": 999,
+}
+
+OKP_ADMIN_ORDER_MODELS = {
+    "okp_auth": {
+        "OkpUser": 1,
+        "OkpGroup": 2,
+    }
+}
