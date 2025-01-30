@@ -130,7 +130,7 @@ TEMPLATES = [
 
 STORAGES = {
     "default": {
-        "BACKEND": "django.core.files.storage.StaticFilesStorage",
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
@@ -210,6 +210,8 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "mediafiles"
+
+WHITENOISE_KEEP_ONLY_HASHED_FILES = True
 
 
 # Default primary key field type
