@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-28 23:52-0500\n"
+"POT-Creation-Date: 2025-01-30 12:13-0500\n"
 "PO-Revision-Date: 2025-01-29 00:00-0500\n"
 "Last-Translator: mcpronovost <mcpronovostkurkiency@gmail.com>\n"
 "Language-Team: French <LL@li.org>\n"
@@ -18,7 +18,120 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\backend\okp\core\fields.py:12
+#: .\backend\okp\auth\admin.py:20
+msgid "Identity"
+msgstr "Identité"
+
+#: .\backend\okp\auth\admin.py:30
+msgid "Media"
+msgstr "Média"
+
+#: .\backend\okp\auth\admin.py:37
+msgctxt "admin_is_boolean"
+msgid "Status"
+msgstr "Statuts"
+
+#: .\backend\okp\auth\admin.py:45 .\backend\okp\auth\models.py:29
+msgid "Permissions"
+msgstr "Permissions"
+
+#: .\backend\okp\auth\admin.py:54
+msgid "Important dates"
+msgstr "Dates importantes"
+
+#: .\backend\okp\auth\apps.py:8
+msgid "Authentication"
+msgstr "Authentification"
+
+#: .\backend\okp\auth\models.py:23
+msgid "Name"
+msgstr "Nom"
+
+#: .\backend\okp\auth\models.py:33
+msgid "Is Visible"
+msgstr "Visible"
+
+#: .\backend\okp\auth\models.py:40
+msgid "Group"
+msgstr "Groupe"
+
+#: .\backend\okp\auth\models.py:41 .\backend\okp\auth\models.py:110
+msgid "Groups"
+msgstr "Groupes"
+
+#: .\backend\okp\auth\models.py:47
+msgid "email address"
+msgstr "Courriel"
+
+#: .\backend\okp\auth\models.py:51
+msgid "Middle Name"
+msgstr "Autre(s) prénom(s)"
+
+#: .\backend\okp\auth\models.py:56
+msgid "Public Name"
+msgstr "Nom public"
+
+#: .\backend\okp\auth\models.py:62
+msgid "Auto-Generate Name"
+msgstr "Nom automatique"
+
+#: .\backend\okp\auth\models.py:66
+msgid "Abbreviation"
+msgstr "Abréviation"
+
+#: .\backend\okp\auth\models.py:71
+msgid "Auto-Generate Abbreviation"
+msgstr "Abréviation automatique"
+
+#: .\backend\okp\auth\models.py:75
+msgid "Slug"
+msgstr "Slug"
+
+#: .\backend\okp\auth\models.py:80
+msgid "Auto-Generate Slug"
+msgstr "Slug automatique"
+
+#: .\backend\okp\auth\models.py:84
+msgid "Avatar"
+msgstr "Avatar"
+
+#: .\backend\okp\auth\models.py:96
+msgid "Cover"
+msgstr "Couverture"
+
+#: .\backend\okp\auth\models.py:114
+msgid "Created At"
+msgstr "Créé le"
+
+#: .\backend\okp\auth\models.py:118
+msgid "Updated At"
+msgstr "Modifié le"
+
+#: .\backend\okp\auth\models.py:123
+msgid "User"
+msgstr "Utilisateur"
+
+#: .\backend\okp\auth\models.py:124
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: .\backend\okp\contrib\blog\apps.py:7
+msgid "Blog"
+msgstr "Blog"
+
+#: .\backend\okp\contrib\courrier\apps.py:7
+msgid "Courrier"
+msgstr "Courrier"
+
+#: .\backend\okp\contrib\forum\apps.py:7
+msgid "Forum"
+msgstr "Forum"
+
+#: .\backend\okp\core\apps.py:8
+msgid "Core"
+msgstr "Core"
+
+#: .\backend\okp\core\validators.py:18
 #, python-format
 msgid "File size must be no more than %sMB."
 msgstr "La taille du fichier ne doit pas dépasser %sMB."
