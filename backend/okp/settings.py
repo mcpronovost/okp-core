@@ -34,8 +34,11 @@ INSTALLED_APPS = [
     "drf_spectacular",
     # okp
     "okp.core",
-    # "okp.auth",
-    # ...
+    "okp.auth",
+    "okp.contrib.blog",
+    "okp.contrib.courrier",
+    "okp.contrib.forum",
+    "okp.api",
     # cleanup
     "django_cleanup.apps.CleanupConfig",
 ]
@@ -69,6 +72,12 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CORS_ALLOW_ALL_ORIGINS = False
+
+
+# Auth
+# https://docs.djangoproject.com/en/5.1/topics/auth/customizing/
+
+AUTH_USER_MODEL = "okp_auth.OkpUser"
 
 
 # Rest Framework Settings
