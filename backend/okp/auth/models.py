@@ -41,6 +41,9 @@ class OkpGroup(models.Model):
         verbose_name_plural = _("Groups")
         ordering = ["name"]
 
+    def __str__(self):
+        return self.name
+
 
 class OkpUser(AbstractUser):
     email = models.EmailField(
