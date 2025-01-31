@@ -1,9 +1,6 @@
-import json
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin, GroupAdmin
 from django.contrib.auth.models import Group
-from django.http import HttpRequest
-from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _, pgettext_lazy
 
 from .models import OkpUser, OkpGroup, OkpAuthToken

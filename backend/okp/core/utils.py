@@ -1,7 +1,7 @@
 from django.utils.text import slugify
 
 
-def get_abbr(string, max=3):
+def get_abbr(string, max_length=3):
     """
     Get an abbreviation from a string.
 
@@ -12,8 +12,7 @@ def get_abbr(string, max=3):
     Returns:
         str: The abbreviation.
     """
-    parts = string.split()
-    if not parts:
+    if not (parts := string.split()):
         return string
 
     # Handle single word case
@@ -26,11 +25,11 @@ def get_abbr(string, max=3):
         abbr.append(parts[-1][0])
 
     # Fill middle letters if we have room
-    if len(abbr) < max and len(parts[1:-1]) > 0:
+    if len(abbr) < max_length and len(parts[1:-1]) > 0:
         middle_letters = (word[0] for word in parts[1:-1])
-        abbr[1:1] = list(middle_letters)[:max - len(abbr)]
+        abbr[1:1] = list(middle_letters)[: max_length - len(abbr)]
 
-    return "".join(abbr).upper()[:max]
+    return "".join(abbr).upper()[:max_length]
 
 
 def get_slug(string, instance, model):

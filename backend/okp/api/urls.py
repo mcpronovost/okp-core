@@ -8,7 +8,11 @@ from drf_spectacular.views import (
 # API documentation patterns
 api_doc_patterns = [
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
-    path("swagger/",SpectacularSwaggerView.as_view(url_name="schema"), name="swagger"),
+    path(
+        "swagger/",
+        SpectacularSwaggerView.as_view(url_name="schema"),
+        name="swagger",
+    ),
     path("", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
 ]
 

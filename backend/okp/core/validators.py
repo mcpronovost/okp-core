@@ -2,7 +2,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 
-def okpImageSizeValidator(value, max_mb=2):
+def okp_image_size_validator(value, max_mb=2):
     """
     Validate the image size.
 
@@ -15,4 +15,6 @@ def okpImageSizeValidator(value, max_mb=2):
     """
     max_size = max_mb * 1024 * 1024  # 2MB
     if value.size > max_size:
-        raise ValidationError(_("File size must be no more than %sMB." % max_mb))
+        raise ValidationError(
+            _("File size must be no more than %sMB." % max_mb)  # pylint: disable=consider-using-f-string
+        )

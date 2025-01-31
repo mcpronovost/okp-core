@@ -6,7 +6,7 @@ from knox.models import AbstractAuthToken
 
 from okp.core.fields import OkpImageField
 from okp.core.utils import get_abbr, get_slug
-from okp.core.validators import okpImageSizeValidator
+from okp.core.validators import okp_image_size_validator
 
 
 class OkpGroupManager(models.Manager):
@@ -92,7 +92,7 @@ class OkpUser(AbstractUser):
         blank=True,
         null=True,
         validators=[
-            okpImageSizeValidator,
+            okp_image_size_validator,
             FileExtensionValidator(allowed_extensions=["jpg", "jpeg", "png", "webp"])
         ],
     )
@@ -104,7 +104,7 @@ class OkpUser(AbstractUser):
         blank=True,
         null=True,
         validators=[
-            okpImageSizeValidator,
+            okp_image_size_validator,
             FileExtensionValidator(allowed_extensions=["jpg", "jpeg", "png", "webp"])
         ],
     )
@@ -134,11 +134,11 @@ class OkpUser(AbstractUser):
     def save(self, *args, **kwargs):
         if self.is_name_auto:
             self.name = " ".join(
-                filter(None, [
+                name for name in (
                     self.first_name,
                     self.middle_name,
                     self.last_name,
-                ])
+                ) if name
             ) or self.username
         if self.is_abbr_auto:
             self.abbr = get_abbr(self.name)

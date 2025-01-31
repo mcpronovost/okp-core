@@ -6,7 +6,7 @@ from django.db.models import ImageField
 
 
 class OkpImageField(ImageField):
-    def __init__(self, max_width=None, max_height=None, *args, **kwargs):
+    def __init__(self, *args, max_width=None, max_height=None, **kwargs):
         self.max_width = max_width
         self.max_height = max_height
         super().__init__(*args, **kwargs)
@@ -14,7 +14,7 @@ class OkpImageField(ImageField):
     def pre_save(self, model_instance, add):
         file = getattr(model_instance, self.attname)
         filename = f"{model_instance.id}-{str(uuid.uuid4())[:8]}.png"
-        if file and not file._committed:
+        if file and not file._committed:  # pylint: disable=protected-access
             # Open image
             pil_image = Image.open(file)
 

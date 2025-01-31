@@ -23,15 +23,16 @@ class OkpAuthLoginView(KnoxLoginView):
             user=self.request.user,
             expiry=self.get_token_ttl(),
             prefix=self.get_token_prefix(),
-            data=self.get_auth_data()
+            data=self.get_auth_data(),
         )
 
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
         serializer = OkpAuthTokenSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data["user"]
-        token_limit_per_user = self.get_token_limit_per_user()
-        if token_limit_per_user is not None:
+        if (
+            token_limit_per_user := self.get_token_limit_per_user()
+        ) is not None:
             now = timezone.now()
             tokens = user.auth_token_set.filter(expiry__gt=now)
             if tokens.count() >= token_limit_per_user:
@@ -41,7 +42,8 @@ class OkpAuthLoginView(KnoxLoginView):
         # user_logged_in.send(sender=request.user.__class__, request=request, user=request.user)
         data = self.get_post_response_data(request, token, instance)
         print(">> data : ", data)
-        return Response({
-            "message": "OkpAuthLoginView POST",
-        })
-
+        return Response(
+            {
+                "message": "OkpAuthLoginView POST",
+            }
+        )
