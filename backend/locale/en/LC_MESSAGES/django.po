@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-30 12:13-0500\n"
+"POT-Creation-Date: 2025-01-30 20:04-0500\n"
 "PO-Revision-Date: 2025-01-29 00:00-0500\n"
 "Last-Translator: mcpronovost <mcpronovostkurkiency@gmail.com>\n"
 "Language-Team: English <LL@li.org>\n"
@@ -18,24 +18,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\backend\okp\auth\admin.py:20
+#: .\backend\okp\auth\admin.py:21
 msgid "Identity"
 msgstr "Identity"
 
-#: .\backend\okp\auth\admin.py:30
+#: .\backend\okp\auth\admin.py:31
 msgid "Media"
 msgstr "Media"
 
-#: .\backend\okp\auth\admin.py:37
+#: .\backend\okp\auth\admin.py:38
 msgctxt "admin_is_boolean"
 msgid "Status"
 msgstr "Status"
 
-#: .\backend\okp\auth\admin.py:45 .\backend\okp\auth\models.py:29
+#: .\backend\okp\auth\admin.py:46 .\backend\okp\auth\models.py:30
 msgid "Permissions"
 msgstr "Permissions"
 
-#: .\backend\okp\auth\admin.py:54
+#: .\backend\okp\auth\admin.py:55
 msgid "Important dates"
 msgstr "Important dates"
 
@@ -43,77 +43,89 @@ msgstr "Important dates"
 msgid "Authentication"
 msgstr "Authentication"
 
-#: .\backend\okp\auth\models.py:23
+#: .\backend\okp\auth\models.py:24
 msgid "Name"
 msgstr "Name"
 
-#: .\backend\okp\auth\models.py:33
+#: .\backend\okp\auth\models.py:34
 msgid "Is Visible"
 msgstr "Is Visible"
 
-#: .\backend\okp\auth\models.py:40
+#: .\backend\okp\auth\models.py:41
 msgid "Group"
 msgstr "Group"
 
-#: .\backend\okp\auth\models.py:41 .\backend\okp\auth\models.py:110
+#: .\backend\okp\auth\models.py:42 .\backend\okp\auth\models.py:114
 msgid "Groups"
 msgstr "Groups"
 
-#: .\backend\okp\auth\models.py:47
+#: .\backend\okp\auth\models.py:51
 msgid "email address"
 msgstr "Email"
 
-#: .\backend\okp\auth\models.py:51
+#: .\backend\okp\auth\models.py:55
 msgid "Middle Name"
 msgstr "Middle Name"
 
-#: .\backend\okp\auth\models.py:56
+#: .\backend\okp\auth\models.py:60
 msgid "Public Name"
 msgstr "Public Name"
 
-#: .\backend\okp\auth\models.py:62
+#: .\backend\okp\auth\models.py:66
 msgid "Auto-Generate Name"
 msgstr "Auto-Generate Name"
 
-#: .\backend\okp\auth\models.py:66
+#: .\backend\okp\auth\models.py:70
 msgid "Abbreviation"
 msgstr "Abbreviation"
 
-#: .\backend\okp\auth\models.py:71
+#: .\backend\okp\auth\models.py:75
 msgid "Auto-Generate Abbreviation"
 msgstr "Auto-Generate Abbreviation"
 
-#: .\backend\okp\auth\models.py:75
+#: .\backend\okp\auth\models.py:79
 msgid "Slug"
 msgstr "Slug"
 
-#: .\backend\okp\auth\models.py:80
+#: .\backend\okp\auth\models.py:84
 msgid "Auto-Generate Slug"
 msgstr "Auto-Generate Slug"
 
-#: .\backend\okp\auth\models.py:84
+#: .\backend\okp\auth\models.py:88
 msgid "Avatar"
 msgstr "Avatar"
 
-#: .\backend\okp\auth\models.py:96
+#: .\backend\okp\auth\models.py:100
 msgid "Cover"
 msgstr "Cover"
 
-#: .\backend\okp\auth\models.py:114
+#: .\backend\okp\auth\models.py:118
 msgid "Created At"
 msgstr "Created At"
 
-#: .\backend\okp\auth\models.py:118
+#: .\backend\okp\auth\models.py:122
 msgid "Updated At"
 msgstr "Updated At"
 
-#: .\backend\okp\auth\models.py:123
+#: .\backend\okp\auth\models.py:127
 msgid "User"
 msgstr "User"
 
-#: .\backend\okp\auth\models.py:124
+#: .\backend\okp\auth\models.py:128
 msgid "Users"
 msgstr "Users"
+
+#: .\backend\okp\auth\models.py:152
+msgid "Data"
+msgstr "Data"
+
+#: .\backend\okp\auth\models.py:158
+msgid "Auth Token"
+msgstr "Auth Token"
+
+#: .\backend\okp\auth\models.py:159
+msgid "Auth Tokens"
+msgstr "Auth Tokens"
 
 #: .\backend\okp\contrib\blog\apps.py:7
 msgid "Blog"
