@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser, Permission
 from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from knox.models import AbstractAuthToken
 
 from okp.core.fields import OkpImageField
 from okp.core.utils import get_abbr, get_slug
@@ -144,3 +145,19 @@ class OkpUser(AbstractUser):
         if self.is_slug_auto:
             self.slug = get_slug(self.name, self, OkpUser)
         super().save(*args, **kwargs)
+
+
+class OkpAuthToken(AbstractAuthToken):
+    data = models.JSONField(
+        verbose_name=_("Data"),
+        blank=True,
+        null=True,
+    )
+
+    class Meta:
+        verbose_name = _("Auth Token")
+        verbose_name_plural = _("Auth Tokens")
+        ordering = ["user", "expiry"]
+
+    def __str__(self):
+        return f"{self.user} - {self.token_key}"

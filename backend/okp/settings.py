@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     # tiers
     "corsheaders",
     "rest_framework",
+    "knox",
     "drf_spectacular",
     # okp
     "okp.core",
@@ -86,13 +87,21 @@ AUTH_USER_MODEL = "okp_auth.OkpUser"
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.SessionAuthentication",
-        "rest_framework.authentication.TokenAuthentication",
+        "knox.auth.TokenAuthentication",
     ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
     ],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+KNOX_TOKEN_MODEL = "okp_auth.OkpAuthToken"
+
+REST_KNOX = {
+    "TOKEN_LIMIT_PER_USER": 2,
+    "USER_SERIALIZER": "knox.serializers.UserSerializer",
+    "AUTH_HEADER_PREFIX": "okp",
+    "TOKEN_MODEL": KNOX_TOKEN_MODEL,
 }
 
 SPECTACULAR_SETTINGS = {
@@ -235,5 +244,6 @@ OKP_ADMIN_ORDER_MODELS = {
     "okp_auth": {
         "OkpUser": 1,
         "OkpGroup": 2,
+        "OkpAuthToken": 3,
     }
 }
