@@ -93,7 +93,9 @@ class OkpUser(AbstractUser):
         null=True,
         validators=[
             okp_image_size_validator,
-            FileExtensionValidator(allowed_extensions=["jpg", "jpeg", "png", "webp"])
+            FileExtensionValidator(
+                allowed_extensions=["jpg", "jpeg", "png", "webp"]
+            ),
         ],
     )
     cover = OkpImageField(
@@ -105,7 +107,9 @@ class OkpUser(AbstractUser):
         null=True,
         validators=[
             okp_image_size_validator,
-            FileExtensionValidator(allowed_extensions=["jpg", "jpeg", "png", "webp"])
+            FileExtensionValidator(
+                allowed_extensions=["jpg", "jpeg", "png", "webp"]
+            ),
         ],
     )
     groups = models.ManyToManyField(
@@ -133,13 +137,18 @@ class OkpUser(AbstractUser):
 
     def save(self, *args, **kwargs):
         if self.is_name_auto:
-            self.name = " ".join(
-                name for name in (
-                    self.first_name,
-                    self.middle_name,
-                    self.last_name,
-                ) if name
-            ) or self.username
+            self.name = (
+                " ".join(
+                    name
+                    for name in (
+                        self.first_name,
+                        self.middle_name,
+                        self.last_name,
+                    )
+                    if name
+                )
+                or self.username
+            )
         if self.is_abbr_auto:
             self.abbr = get_abbr(self.name)
         if self.is_slug_auto:
