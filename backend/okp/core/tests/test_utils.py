@@ -1,5 +1,4 @@
-import pytest
-from django.db import models
+# pylint: disable=too-few-public-methods,attribute-defined-outside-init
 from okp.core.utils import get_abbr, get_slug
 
 
@@ -49,10 +48,11 @@ class MockQuerySet:
         self.excluded_id = None
 
     def filter(self, **kwargs):
-        self.filtered_slugs = [slug for slug in self.existing_slugs if kwargs["slug"] == slug]
+        self.filtered_slugs = [
+            slug for slug in self.existing_slugs if kwargs["slug"] == slug]
         return self
 
-    def exclude(self, id=None):
+    def exclude(self, id=None):  # pylint: disable=redefined-builtin
         self.excluded_id = id
         return self
 
@@ -67,6 +67,7 @@ class MockModel:
         self.objects = MockQuerySet(existing_slugs)
 
 
+# pylint: disable=redefined-builtin
 class MockInstance:
     def __init__(self, id=1):
         self.id = id

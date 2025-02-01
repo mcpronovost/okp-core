@@ -30,7 +30,7 @@ def auto_login_user(_db, client, create_user, test_password):
 
 @pytest.fixture
 def test_user():
-    User = get_user_model()
+    User = get_user_model()  # pylint: disable=invalid-name
     return User.objects.create_user(
         username="testuser",
         email="test@example.com",

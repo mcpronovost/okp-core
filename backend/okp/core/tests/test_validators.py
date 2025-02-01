@@ -3,6 +3,7 @@ from django.core.exceptions import ValidationError
 from okp.core.validators import okp_image_size_validator
 
 
+# pylint: disable=too-few-public-methods
 class MockFile:
     def __init__(self, size):
         self.size = size

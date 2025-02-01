@@ -1,13 +1,16 @@
 import pytest
 from django.contrib.auth import get_user_model
 
-from okp.auth.serializers import OkpAuthRegisterSerializer, OkpAuthTokenSerializer
+from okp.auth.serializers import (
+    OkpAuthRegisterSerializer,
+    OkpAuthTokenSerializer
+)
 
 
 @pytest.mark.django_db
 class TestOkpAuthTokenSerializer:
     def test_token_serializer_valid_credentials(self):
-        User = get_user_model()
+        User = get_user_model()  # pylint: disable=invalid-name
         User.objects.create_user(
             username="testuser",
             password="testpass123"

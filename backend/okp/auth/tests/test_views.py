@@ -1,8 +1,8 @@
-# pylint: disable=invalid-name
+# pylint: disable=invalid-name,redefined-outer-name
 import pytest
+from django.contrib.auth import get_user_model
 from django.urls import reverse
 from rest_framework.test import APIClient
-from django.contrib.auth import get_user_model
 
 
 @pytest.fixture
@@ -52,6 +52,7 @@ class TestOkpAuthViews:
 
         assert user.auth_token_set.count() == 2
 
+    # pylint: disable=unused-argument
     def test_logout_success(self, api_client, test_user):
         # First login to get token
         response = api_client.post(reverse("okp_auth_login"), {
@@ -65,6 +66,7 @@ class TestOkpAuthViews:
         response = api_client.post(reverse("okp_auth_logout"))
         assert response.status_code == 204
 
+    # pylint: disable=unused-argument
     def test_logoutall_success(self, api_client, test_user):
         # First login to get token
         response = api_client.post(reverse("okp_auth_login"), {
@@ -100,13 +102,14 @@ class TestOkpAuthViews:
             "password2": "different",  # Mismatched passwords
             "terms_accepted": False  # Terms not accepted
         })
-        
+
         assert response.status_code == 400
         assert "username" in response.data
         assert "email" in response.data
         assert "password" in response.data
         assert "terms_accepted" in response.data
 
+    # pylint: disable=unused-argument
     def test_register_existing_username(self, api_client, test_user):
         """Test registration with existing username"""
         response = api_client.post(reverse("okp_auth_register"), {
@@ -116,10 +119,11 @@ class TestOkpAuthViews:
             "password2": "TestPass123!",
             "terms_accepted": True
         })
-        
+
         assert response.status_code == 400
         assert "username" in response.data
 
+    # pylint: disable=unused-argument
     def test_register_existing_email(self, api_client, test_user):
         """Test registration with existing email"""
         response = api_client.post(reverse("okp_auth_register"), {
@@ -129,6 +133,6 @@ class TestOkpAuthViews:
             "password2": "TestPass123!",
             "terms_accepted": True
         })
-        
+
         assert response.status_code == 400
         assert "email" in response.data

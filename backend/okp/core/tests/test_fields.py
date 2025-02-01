@@ -1,3 +1,4 @@
+# pylint: disable=attribute-defined-outside-init,redefined-outer-name
 import io
 import pytest
 from PIL import Image
@@ -9,7 +10,7 @@ from okp.core.fields import OkpImageField
 class ImageTestModel(models.Model):
     """Test model for OkpImageField"""
     image = OkpImageField(max_width=100, max_height=100, upload_to="test/")
-    
+
     class Meta:
         app_label = "core"
         managed = False
@@ -79,10 +80,12 @@ class TestOkpImageField:
         # Check if filename follows the expected format
         filename = instance.image.name
         assert filename.startswith("test/")
-        filename_without_path = filename.split("/")[-1]  # Get just the filename part
+        filename_without_path = filename.split(
+            "/")[-1]  # Get just the filename part
         assert filename_without_path.startswith(f"{instance.id}-")
         assert filename_without_path.endswith(".png")
-        assert len(filename_without_path.split("-")[1].split(".")[0]) == 8  # UUID length
+        assert len(filename_without_path.split("-")
+                   [1].split(".")[0]) == 8  # UUID length
 
     def test_no_dimensions_specified(self):
         # Test field initialization without max dimensions
