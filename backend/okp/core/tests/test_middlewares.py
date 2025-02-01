@@ -18,7 +18,6 @@ def request_factory():
 
 
 def test_non_admin_path(middleware, request_factory):
-    """Test that middleware doesn't modify anything for non-admin paths"""
     request = request_factory.get("/some-other-path/")
     middleware(request)
 
@@ -27,7 +26,6 @@ def test_non_admin_path(middleware, request_factory):
 
 
 def test_admin_path(middleware, request_factory):
-    """Test that middleware attempts to sort admin menu for admin paths"""
     request = request_factory.get("/admin/")
 
     with patch("okp.core.middlewares.resolve") as mock_resolve:
@@ -41,7 +39,6 @@ def test_admin_path(middleware, request_factory):
 
 
 def test_sort_admin_menu(middleware):
-    """Test that the admin menu is properly sorted with both app and model ordering"""
     # Mock settings with specific ordering
     middleware.app_order = {
         "auth": 1,
@@ -73,7 +70,10 @@ def test_sort_admin_menu(middleware):
 
     mock_request = MagicMock()
 
-    with patch.object(admin.site, "get_app_list", return_value=original_app_list):
+    with patch.object(
+        admin.site, "get_app_list",
+        return_value=original_app_list
+    ):
         # pylint: disable=protected-access
         middleware._sort_admin_menu()
 
@@ -89,7 +89,7 @@ def test_sort_admin_menu(middleware):
         assert [model["object_name"]
                 for model in auth_app["models"]] == ["Group", "User"]
 
-        # Verify sites app models remained unchanged (no model_order defined for sites)
+        # Verify sites app models remained unchanged
         sites_app = next(
             app for app in sorted_list if app["app_label"] == "sites")
         assert [model["object_name"]
@@ -100,7 +100,10 @@ def test_exception_handling(middleware, request_factory):
     """Test that middleware handles exceptions gracefully"""
     request = request_factory.get("/admin/")
 
-    with patch("okp.core.middlewares.resolve", side_effect=Exception("Test error")):
+    with patch(
+        "okp.core.middlewares.resolve",
+        side_effect=Exception("Test error")
+    ):
         # Should not raise an exception
         middleware(request)
 
