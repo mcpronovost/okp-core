@@ -29,4 +29,4 @@ You can expect:
 
 ## Contact
 
-Project maintainer: [mcpronovost]
+Project maintainer: [mcpronovost](https://github.com/mcpronovost)
