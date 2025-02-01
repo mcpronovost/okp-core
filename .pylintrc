@@ -19,3 +19,4 @@ disable=
     missing-class-docstring,
     missing-function-docstring,
     too-many-locals,
+    duplicate-code,
