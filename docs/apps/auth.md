@@ -16,22 +16,17 @@ A Django-based authentication system that extends Django's built-in authenticati
 ### OkpUser
 Extends Django's AbstractUser with additional fields:
 
+- `username`: Unique identifier (letters, numbers, underscores, hyphens)
 - `email`: User's email address
+- `first_name`: User's first name
 - `middle_name`: Optional middle name
+- `last_name`: User's last name
 - `name`: Auto-generated or custom public display name
 - `abbr`: 4-character abbreviation
 - `slug`: URL-friendly username
 - `avatar`: Profile picture (max 200x200)
 - `cover`: Cover image (max 1024x256)
 - `created_at`/`updated_at`: Timestamp fields
-
-### OkpGroup
-Custom group model replacing Django's default Group:
-
-- `name`: Group name
-- `permissions`: Group permissions
-- `is_visible`: Controls group visibility
-- Custom manager with `visible()` method
 
 ### OkpAuthToken
 Extends Knox's AbstractAuthToken:
@@ -49,6 +44,7 @@ urlpatterns = [
     path("login/", OkpAuthLoginView.as_view()),
     path("logout/", OkpAuthLogoutView.as_view()),
     path("logoutall/", OkpAuthLogoutAllView.as_view()),
+    path("register/", OkpAuthRegisterView.as_view()),
 ]
 ```
 
@@ -69,6 +65,22 @@ urlpatterns = [
 - Endpoint: `POST /api/v1/auth/logoutall/`
 - Invalidates all user tokens
 - Requires authentication
+
+#### OkpAuthRegisterView
+- Endpoint: `POST /api/v1/auth/register/`
+- Creates new user accounts
+- Validates username, email, and password
+- Auto-generates user fields
+- Returns token and user data
+- Required fields:
+  - username (unique, alphanumeric + _-)
+  - email (unique)
+  - password (with validation)
+  - password2 (confirmation)
+  - terms_accepted (boolean)
+- Optional fields:
+  - first_name
+  - last_name
 
 ## Management Commands
 
@@ -115,19 +127,27 @@ axios.post("http://localhost:8000/api/v1/auth/logout/", null, {
         "Authorization": "okp ${token}"
     }
 })
+// Register
+axios.post("http://localhost:8000/api/v1/auth/register/", {
+    username: "username",
+    email: "user@example.com",
+    password: "securepassword",
+    password2: "securepassword",
+    first_name: "John",
+    last_name: "Doe",
+    terms_accepted: true
+})
 ```
 
 
 ## Admin Interface
 
 The app provides custom admin interfaces for:
-- User management
-- Group management
-- Token management
+- User management with extended profile fields
+- Token management with browser data display
 
 Admin models include:
-- `OkpUserAdmin`: Extended user management
-- `OkpGroupAdmin`: Group management with visibility control
+- `OkpUserAdmin`: Extended user management with custom fieldsets
 - `OkpAuthTokenAdmin`: Read-only token management with browser data display
 
 ## Internationalization
