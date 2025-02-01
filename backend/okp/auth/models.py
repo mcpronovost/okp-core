@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractUser, Permission
+from django.contrib.auth.models import AbstractUser
 from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -7,43 +7,6 @@ from knox.models import AbstractAuthToken
 from okp.core.fields import OkpImageField
 from okp.core.utils import get_abbr, get_slug
 from okp.core.validators import okp_image_size_validator
-
-
-class OkpGroupManager(models.Manager):
-    use_in_migrations = True
-
-    def get_by_natural_key(self, name):
-        return self.get(name=name)
-
-    def visible(self):
-        return self.filter(is_visible=True)
-
-
-class OkpGroup(models.Model):
-    name = models.CharField(
-        verbose_name=_("Name"),
-        max_length=120,
-        unique=True,
-    )
-    permissions = models.ManyToManyField(
-        Permission,
-        verbose_name=_("Permissions"),
-        blank=True,
-    )
-    is_visible = models.BooleanField(
-        verbose_name=_("Is Visible"),
-        default=True,
-    )
-
-    objects = OkpGroupManager()
-
-    class Meta:
-        verbose_name = _("Group")
-        verbose_name_plural = _("Groups")
-        ordering = ["name"]
-
-    def __str__(self):
-        return self.name
 
 
 class OkpUser(AbstractUser):
@@ -111,12 +74,6 @@ class OkpUser(AbstractUser):
                 allowed_extensions=["jpg", "jpeg", "png", "webp"]
             ),
         ],
-    )
-    groups = models.ManyToManyField(
-        OkpGroup,
-        related_name="users",
-        verbose_name=_("Groups"),
-        blank=True,
     )
     created_at = models.DateTimeField(
         verbose_name=_("Created At"),

@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin, GroupAdmin
 from django.contrib.auth.models import Group
 from django.utils.translation import gettext_lazy as _, pgettext_lazy
 
-from .models import OkpUser, OkpGroup, OkpAuthToken
+from .models import OkpUser, OkpAuthToken
 
 
 @admin.register(OkpUser)
@@ -60,13 +60,6 @@ class OkpUserAdmin(UserAdmin):
             )
         }),
     )
-
-
-@admin.register(OkpGroup)
-class OkpGroupAdmin(GroupAdmin):
-    list_display = ("name", "is_visible")
-    list_filter = ("is_visible",)
-    search_fields = ("name",)
 
 
 @admin.register(OkpAuthToken)
