@@ -7,8 +7,6 @@ from .views import (
     OkpAuthRegisterView,
 )
 
-
-
 urlpatterns = [
     path("login/", OkpAuthLoginView.as_view(), name="okp_auth_login"),
     path("logout/", OkpAuthLogoutView.as_view(), name="okp_auth_logout"),

@@ -7,7 +7,10 @@ from rest_framework.validators import UniqueValidator
 
 
 class OkpAuthTokenSerializer(serializers.Serializer):
-    username = serializers.CharField(label=_("Username"), write_only=True)
+    username = serializers.CharField(
+        label=_("Username"),
+        write_only=True,
+    )
     password = serializers.CharField(
         label=_("Password"),
         style={"input_type": "password"},
@@ -26,21 +29,14 @@ class OkpAuthTokenSerializer(serializers.Serializer):
         username = attrs.get("username")
         password = attrs.get("password")
 
-        if username and password:
-            user = authenticate(
-                request=self.context.get("request"),
-                username=username,
-                password=password,
-            )
+        user = authenticate(
+            request=self.context.get("request"),
+            username=username,
+            password=password,
+        )
 
-            # The authenticate call simply returns None for is_active=False
-            # users. (Assuming the default ModelBackend authentication
-            # backend.)
-            if not user:
-                msg = _("Unable to log in with provided credentials.")
-                raise serializers.ValidationError(msg, code="authorization")
-        else:
-            msg = _('Must include "username" and "password".')
+        if not user:
+            msg = _("Unable to log in with provided credentials.")
             raise serializers.ValidationError(msg, code="authorization")
 
         attrs["user"] = user
@@ -68,8 +64,16 @@ class OkpAuthRegisterSerializer(serializers.ModelSerializer):
             )
         ]
     )
-    password = serializers.CharField(write_only=True, required=True)
-    password2 = serializers.CharField(write_only=True, required=True)
+    password = serializers.CharField(
+        write_only=True,
+        required=True,
+        validators=[validate_password]
+    )
+    password2 = serializers.CharField(
+        write_only=True,
+        required=True,
+        validators=[validate_password]
+    )
     first_name = serializers.CharField(write_only=True, required=False)
     last_name = serializers.CharField(write_only=True, required=False)
     terms_accepted = serializers.BooleanField(required=True)
@@ -80,13 +84,18 @@ class OkpAuthRegisterSerializer(serializers.ModelSerializer):
                   "first_name", "last_name", "terms_accepted")
 
     def validate_username(self, value):
+        if len(value) < 3:
+            raise serializers.ValidationError(
+                _("Username must be at least 3 characters long.")
+            )
         if len(value) > 150:
             raise serializers.ValidationError(
                 _("Username must be less than 150 characters long.")
             )
         if not re.match(r"^[a-zA-Z0-9_-]+$", value):
             raise serializers.ValidationError(
-                _("Username must contain only letters, numbers, underscores, and hyphens.")
+                _("Username must contain only letters, numbers, \
+                  underscores, and hyphens.")
             )
         return value
 
@@ -122,12 +131,14 @@ class OkpAuthRegisterSerializer(serializers.ModelSerializer):
         # Remove non-model fields before creating user
         validated_data.pop("password2")
         validated_data.pop("terms_accepted")
+        first_name = getattr(validated_data, "first_name", "")
+        last_name = getattr(validated_data, "last_name", "")
 
         user = get_user_model().objects.create_user(
             username=validated_data["username"],
             email=validated_data["email"],
             password=validated_data["password"],
-            first_name=validated_data["first_name"],
-            last_name=validated_data["last_name"],
+            first_name=first_name,
+            last_name=last_name,
         )
         return user
