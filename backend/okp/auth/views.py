@@ -1,9 +1,15 @@
 from django.contrib.auth import login
+from django.contrib.auth.signals import user_logged_in
 from django.utils import timezone
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from knox.models import get_token_model
-from knox.views import LoginView as KnoxLoginView
+from knox.views import (
+    LoginView as KnoxLoginView,
+    LogoutView as KnoxLogoutView,
+    LogoutAllView as KnoxLogoutAllView
+)
+
 
 from .serializers import OkpAuthTokenSerializer
 
@@ -39,13 +45,28 @@ class OkpAuthLoginView(KnoxLoginView):
                 tokens.first().delete()
         login(request, user)
         instance, token = self.create_token()
-        # user_logged_in.send(
-        # sender=request.user.__class__, request=request, user=request.user
-        # )
-        data = self.get_post_response_data(request, token, instance)
-        print(">> data : ", data)
-        return Response(
-            {
-                "message": "OkpAuthLoginView POST",
-            }
+        user_logged_in.send(
+            sender=request.user.__class__, request=request, user=request.user
         )
+        data = self.get_post_response_data(request, token, instance)
+
+        return Response({
+            "token": data["token"],
+            "user": data["user"],
+        })
+
+
+class OkpAuthLogoutView(KnoxLogoutView):
+    permission_classes = (AllowAny,)
+
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
+
+
+class OkpAuthLogoutAllView(KnoxLogoutAllView):
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
+
+

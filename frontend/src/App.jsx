@@ -6,6 +6,7 @@ import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0)
+  const [token, setToken] = useState(null)
 
   const handleLogin = () => {
     axios.post("http://localhost:8000/api/v1/auth/login/", {
@@ -15,11 +16,27 @@ function App() {
       headers: {
         "Accept-CH": "Sec-CH-UA-Platform"
       }
+    }).then((response) => {
+      if (response.status !== 200) {
+        throw new Error("Login failed")
+      }
+      setToken(response.data.token)
+    }).catch((error) => {
+      console.log(">> error : ", error)
     })
-    .then((response) => {
-      console.log(">> response : ", response)
-    })
-    .catch((error) => {
+  }
+
+  const handleLogout = () => {
+    axios.post("http://localhost:8000/api/v1/auth/logout/", null, {
+      headers: {
+        "Authorization": `okp ${token}`
+      }
+    }).then((response) => {
+      if (response.status !== 204) {
+        throw new Error("Logout failed")
+      }
+      setToken(null)
+    }).catch((error) => {
       console.log(">> error : ", error)
     })
   }
@@ -41,6 +58,9 @@ function App() {
         </button>
         <button onClick={handleLogin}>
           Login
+        </button>
+        <button onClick={handleLogout}>
+          Logout
         </button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
