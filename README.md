@@ -35,6 +35,10 @@ The platform supports multiple languages:
 
 ## 🧪 Testing
 
+### Pytest
+- Uses pytest for testing and coverage
+- To execute test: `pytest`
+
 ### Pylint
 - Uses of pylint to check code quality and enforce consistent style
 - To execute test: `pylint --load-plugins pylint_django --django-settings-module=okp.settings backend/`

@@ -1,0 +1,18 @@
+[run]
+omit = 
+    */migrations/*
+    */__init__.py
+    */apps.py
+    */admin.py
+    */urls.py
+    asgi.py
+    manage.py
+    settings.py
+    urls.py
+    wsgi.py
+
+[report]
+exclude_lines =
+    pragma: no cover
+    def __str__
+    def __repr__
