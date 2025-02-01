@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-30 20:04-0500\n"
+"POT-Creation-Date: 2025-01-31 23:27-0500\n"
 "PO-Revision-Date: 2025-01-29 00:00-0500\n"
 "Last-Translator: mcpronovost <mcpronovostkurkiency@gmail.com>\n"
 "Language-Team: French <LL@li.org>\n"
@@ -31,7 +31,7 @@ msgctxt "admin_is_boolean"
 msgid "Status"
 msgstr "Statuts"
 
-#: .\backend\okp\auth\admin.py:46 .\backend\okp\auth\models.py:30
+#: .\backend\okp\auth\admin.py:46
 msgid "Permissions"
 msgstr "Permissions"
 
@@ -39,103 +39,151 @@ msgstr "Permissions"
 msgid "Important dates"
 msgstr "Dates importantes"
 
+#: .\backend\okp\auth\admin.py:89 .\backend\okp\auth\models.py:118
+msgid "Data"
+msgstr "Données"
+
+#: .\backend\okp\auth\admin.py:100
+msgid "Browser Agent"
+msgstr "Agent"
+
+#: .\backend\okp\auth\admin.py:104
+msgid "Browser Platform"
+msgstr "Plateforme"
+
+#: .\backend\okp\auth\admin.py:108
+msgid "Browser Mobile"
+msgstr "Mobile"
+
 #: .\backend\okp\auth\apps.py:8
 msgid "Authentication"
 msgstr "Authentification"
 
-#: .\backend\okp\auth\models.py:24
-msgid "Name"
-msgstr "Nom"
-
-#: .\backend\okp\auth\models.py:34
-msgid "Is Visible"
-msgstr "Visible"
-
-#: .\backend\okp\auth\models.py:41
-msgid "Group"
-msgstr "Groupe"
-
-#: .\backend\okp\auth\models.py:42 .\backend\okp\auth\models.py:114
-msgid "Groups"
-msgstr "Groupes"
-
-#: .\backend\okp\auth\models.py:51
+#: .\backend\okp\auth\models.py:14
 msgid "email address"
 msgstr "Courriel"
 
-#: .\backend\okp\auth\models.py:55
+#: .\backend\okp\auth\models.py:18
 msgid "Middle Name"
 msgstr "Autre(s) prénom(s)"
 
-#: .\backend\okp\auth\models.py:60
+#: .\backend\okp\auth\models.py:23
 msgid "Public Name"
 msgstr "Nom public"
 
-#: .\backend\okp\auth\models.py:66
+#: .\backend\okp\auth\models.py:29
 msgid "Auto-Generate Name"
 msgstr "Nom automatique"
 
-#: .\backend\okp\auth\models.py:70
+#: .\backend\okp\auth\models.py:33
 msgid "Abbreviation"
 msgstr "Abréviation"
 
-#: .\backend\okp\auth\models.py:75
+#: .\backend\okp\auth\models.py:38
 msgid "Auto-Generate Abbreviation"
 msgstr "Abréviation automatique"
 
-#: .\backend\okp\auth\models.py:79
+#: .\backend\okp\auth\models.py:42
 msgid "Slug"
 msgstr "Slug"
 
-#: .\backend\okp\auth\models.py:84
+#: .\backend\okp\auth\models.py:47
 msgid "Auto-Generate Slug"
 msgstr "Slug automatique"
 
-#: .\backend\okp\auth\models.py:88
+#: .\backend\okp\auth\models.py:51
 msgid "Avatar"
 msgstr "Avatar"
 
-#: .\backend\okp\auth\models.py:100
+#: .\backend\okp\auth\models.py:65
 msgid "Cover"
 msgstr "Couverture"
 
-#: .\backend\okp\auth\models.py:118
+#: .\backend\okp\auth\models.py:79
 msgid "Created At"
 msgstr "Créé le"
 
-#: .\backend\okp\auth\models.py:122
+#: .\backend\okp\auth\models.py:83
 msgid "Updated At"
 msgstr "Modifié le"
 
-#: .\backend\okp\auth\models.py:127
+#: .\backend\okp\auth\models.py:88
 msgid "User"
 msgstr "Utilisateur"
 
-#: .\backend\okp\auth\models.py:128
+#: .\backend\okp\auth\models.py:89
 msgid "Users"
 msgstr "Utilisateurs"
 
-#: .\backend\okp\auth\models.py:152
-msgid "Data"
-msgstr "Données"
-
-#: .\backend\okp\auth\models.py:158
+#: .\backend\okp\auth\models.py:124
 msgid "Auth Token"
 msgstr "Jeton"
 
-#: .\backend\okp\auth\models.py:159
+#: .\backend\okp\auth\models.py:125
 msgid "Auth Tokens"
 msgstr "Jetons"
 
-#: .\backend\okp\contrib\blog\apps.py:7
+#: .\backend\okp\auth\serializers.py:10
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: .\backend\okp\auth\serializers.py:12
+msgid "Password"
+msgstr "Mot de passe"
+
+#: .\backend\okp\auth\serializers.py:17
+msgid "Token"
+msgstr "Jeton"
+
+#: .\backend\okp\auth\serializers.py:40
+msgid "Unable to log in with provided credentials."
+msgstr "Impossible de se connecter avec les identifiants fournis."
+
+#: .\backend\okp\auth\serializers.py:43
+msgid "Must include \"username\" and \"password\"."
+msgstr "Doit inclure un \"nom d'utilisateur\" et un \"mot de passe\"."
+
+#: .\backend\okp\auth\serializers.py:57
+msgid "A user with that username already exists."
+msgstr "Un utilisateur avec ce nom d'utilisateur existe déjà."
+
+#: .\backend\okp\auth\serializers.py:67
+msgid "A user with that email already exists."
+msgstr "Un utilisateur avec cet email existe déjà."
+
+#: .\backend\okp\auth\serializers.py:85
+msgid "Username must be less than 150 characters long."
+msgstr "Le nom d'utilisateur doit être inférieur à 150 caractères."
+
+#: .\backend\okp\auth\serializers.py:89
+msgid "Username must contain only letters, numbers, underscores, and hyphens."
+msgstr "Le nom d'utilisateur ne doit contenir que des lettres, des chiffres, des underscores et des tirets."
+
+#: .\backend\okp\auth\serializers.py:96
+msgid "First name must be less than 150 characters long."
+msgstr "Le prénom doit être inférieur à 150 caractères."
+
+#: .\backend\okp\auth\serializers.py:103
+msgid "Last name must be less than 150 characters long."
+msgstr "Le nom doit être inférieur à 150 caractères."
+
+#: .\backend\okp\auth\serializers.py:110
+msgid "You must accept the terms of service."
+msgstr "Vous devez accepter les conditions d'utilisation."
+
+#: .\backend\okp\auth\serializers.py:117
+msgid "Password fields didn't match."
+msgstr "Les champs de mot de passe ne correspondent pas."
+
+#: .\backend\okp\contrib\blog\apps.py:8
 msgid "Blog"
 msgstr "Blog"
 
-#: .\backend\okp\contrib\courrier\apps.py:7
+#: .\backend\okp\contrib\courrier\apps.py:8
 msgid "Courrier"
 msgstr "Courrier"
 
-#: .\backend\okp\contrib\forum\apps.py:7
+#: .\backend\okp\contrib\forum\apps.py:8
 msgid "Forum"
 msgstr "Forum"
 
@@ -143,7 +191,7 @@ msgstr "Forum"
 msgid "Core"
 msgstr "Core"
 
-#: .\backend\okp\core\validators.py:18
+#: .\backend\okp\core\validators.py:21
 #, python-format
 msgid "File size must be no more than %sMB."
 msgstr "La taille du fichier ne doit pas dépasser %sMB."
