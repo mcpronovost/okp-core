@@ -4,12 +4,13 @@ Core project.
 ## 🌟 Features
 
 ### Apps
-- `OKP Core`: Core app
-- `Auth`: Authentication app
-- `Blog`: Blog app
-- `Courrier`: Private message app
-- `Forum`: Forum app
-- `API`: API app
+- **OKP Core**: Core
+- **Auth**: Authentication
+- **Blog**: Blog
+- **Courrier**: Private message
+- **Forum**: Forum
+- **API**: API
+
 
 ## 🛠️ Technology Stack
 
