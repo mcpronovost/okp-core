@@ -1,4 +1,4 @@
-from django.contrib.auth import login, get_user_model
+from django.contrib.auth import login
 from django.contrib.auth.signals import user_logged_in
 from django.utils import timezone
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -57,7 +57,7 @@ class OkpAuthLoginView(KnoxLoginView):
 
 
 class OkpAuthLogoutView(KnoxLogoutView):
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAuthenticated,)
 
     def post(self, request, *args, **kwargs):
         return super().post(request, *args, **kwargs)
@@ -81,7 +81,7 @@ class OkpAuthRegisterView(OkpAuthLoginView):
 
         # Create new user
         user = serializer.save()
-        
+
         # Log the user in
         login(request, user)
         instance, token = self.create_token()
