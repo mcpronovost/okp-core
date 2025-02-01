@@ -4,7 +4,9 @@ from .views import (
     OkpAuthLoginView,
     OkpAuthLogoutView,
     OkpAuthLogoutAllView,
+    OkpAuthRegisterView,
 )
+
 
 
 urlpatterns = [
@@ -13,4 +15,5 @@ urlpatterns = [
     path(
         "logoutall/", OkpAuthLogoutAllView.as_view(), name="okp_auth_logoutall"
     ),
+    path("register/", OkpAuthRegisterView.as_view(), name="okp_auth_register"),
 ]
