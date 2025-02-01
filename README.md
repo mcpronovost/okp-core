@@ -6,12 +6,13 @@ Core project.
 OKP is a modular Django-based platform with the following main components:
 
 ### Apps
-- **[Core](docs/apps/core.md)**: Core functionality and shared utilities
-- **[Authentication](docs/apps/auth.md)**: User authentication and authorization
-- **[API](docs/api/v1/index.md)**: RESTful API interface
-- **[Blog](docs/apps/blog.md)**: *Optional* blogging functionality
-- **[Courrier](docs/apps/courrier.md)**: *Optional* private messaging system
-- **[Forum](docs/apps/forum.md)**: *Optional* discussion board
+- 🔨 **[Core](docs/apps/core.md)**: Core functionality and shared utilities
+- 🔨 **[API](docs/apps/api.md)**: RESTful API interface
+- ✅ **[Authentication](docs/apps/auth.md)**: User authentication and authorization
+- 📌 **[Blog](docs/apps/blog.md)**: *Optional* blogging functionality
+- 📌 **[Courrier](docs/apps/courrier.md)**: *Optional* private messaging system
+- 📌 **[Forum](docs/apps/forum.md)**: *Optional* discussion board
+
 
 ## 🛠️ Technology Stack
 
