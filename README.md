@@ -3,14 +3,15 @@ Core project.
 
 ## 🌟 Features
 
-### Apps
-- **OKP Core**: Core
-- **Auth**: Authentication
-- **Blog**: Blog
-- **Courrier**: Private message
-- **Forum**: Forum
-- **API**: API
+OKP is a modular Django-based platform with the following main components:
 
+### Apps
+- **[Core](apps/core.md)**: Core functionality and shared utilities
+- **[Authentication](apps/auth.md)**: User authentication and authorization
+- **[API](api/v1/index.md)**: RESTful API interface
+- **[Blog](apps/blog.md)**: *Optional* blogging functionality
+- **[Courrier](apps/courrier.md)**: *Optional* private messaging system
+- **[Forum](apps/forum.md)**: *Optional* discussion board
 
 ## 🛠️ Technology Stack
 
@@ -25,6 +26,13 @@ Core project.
 ### Frontend
 - **React** (19.0.0): For interactive UI components and dynamic features
 
+## 🌐 Internationalization
+
+The platform supports multiple languages:
+
+- English (default)
+- French
+
 ## 🧪 Testing
 
 ### Pylint
@@ -34,3 +42,9 @@ Core project.
 ### Flake8
 - Uses Flake8 for fast style checking and basic error detection
 - To execute test: `flake8 backend/`
+
+## 📖 Additional Resources
+
+- [GitHub Repository](https://github.com/mcpronovost/okp-core)
+- [Issue Tracker](https://github.com/mcpronovost/okp-core/issues)
+- [Changelog](CHANGELOG.md)
