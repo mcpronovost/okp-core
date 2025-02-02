@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-31 23:27-0500\n"
+"POT-Creation-Date: 2025-02-01 20:30-0500\n"
 "PO-Revision-Date: 2025-01-29 00:00-0500\n"
 "Last-Translator: mcpronovost <mcpronovostkurkiency@gmail.com>\n"
 "Language-Team: French <LL@li.org>\n"
@@ -83,11 +83,17 @@ msgstr "Abréviation"
 msgid "Auto-Generate Abbreviation"
 msgstr "Abréviation automatique"
 
-#: .\backend\okp\auth\models.py:42
+#: .\backend\okp\auth\models.py:42 .\backend\okp\contrib\blog\models.py:20
+#: .\backend\okp\contrib\blog\models.py:73
+#: .\backend\okp\contrib\blog\models.py:106
+#: .\backend\okp\contrib\blog\models.py:164
 msgid "Slug"
 msgstr "Slug"
 
-#: .\backend\okp\auth\models.py:47
+#: .\backend\okp\auth\models.py:47 .\backend\okp\contrib\blog\models.py:25
+#: .\backend\okp\contrib\blog\models.py:78
+#: .\backend\okp\contrib\blog\models.py:111
+#: .\backend\okp\contrib\blog\models.py:169
 msgid "Auto-Generate Slug"
 msgstr "Slug automatique"
 
@@ -95,15 +101,19 @@ msgstr "Slug automatique"
 msgid "Avatar"
 msgstr "Avatar"
 
-#: .\backend\okp\auth\models.py:65
+#: .\backend\okp\auth\models.py:65 .\backend\okp\contrib\blog\models.py:173
 msgid "Cover"
 msgstr "Couverture"
 
-#: .\backend\okp\auth\models.py:79
+#: .\backend\okp\auth\models.py:79 .\backend\okp\contrib\blog\models.py:45
+#: .\backend\okp\contrib\blog\models.py:214
+#: .\backend\okp\contrib\blog\models.py:261
 msgid "Created At"
 msgstr "Créé le"
 
-#: .\backend\okp\auth\models.py:83
+#: .\backend\okp\auth\models.py:83 .\backend\okp\contrib\blog\models.py:49
+#: .\backend\okp\contrib\blog\models.py:218
+#: .\backend\okp\contrib\blog\models.py:265
 msgid "Updated At"
 msgstr "Modifié le"
 
@@ -123,61 +133,181 @@ msgstr "Jeton"
 msgid "Auth Tokens"
 msgstr "Jetons"
 
-#: .\backend\okp\auth\serializers.py:10
+#: .\backend\okp\auth\serializers.py:11
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: .\backend\okp\auth\serializers.py:12
+#: .\backend\okp\auth\serializers.py:15
 msgid "Password"
 msgstr "Mot de passe"
 
-#: .\backend\okp\auth\serializers.py:17
+#: .\backend\okp\auth\serializers.py:20
 msgid "Token"
 msgstr "Jeton"
 
-#: .\backend\okp\auth\serializers.py:40
+#: .\backend\okp\auth\serializers.py:39
 msgid "Unable to log in with provided credentials."
 msgstr "Impossible de se connecter avec les identifiants fournis."
 
-#: .\backend\okp\auth\serializers.py:43
-msgid "Must include \"username\" and \"password\"."
-msgstr "Doit inclure un \"nom d'utilisateur\" et un \"mot de passe\"."
-
-#: .\backend\okp\auth\serializers.py:57
+#: .\backend\okp\auth\serializers.py:53
 msgid "A user with that username already exists."
 msgstr "Un utilisateur avec ce nom d'utilisateur existe déjà."
 
-#: .\backend\okp\auth\serializers.py:67
+#: .\backend\okp\auth\serializers.py:63
 msgid "A user with that email already exists."
 msgstr "Un utilisateur avec cet email existe déjà."
 
-#: .\backend\okp\auth\serializers.py:85
+#: .\backend\okp\auth\serializers.py:89
+msgid "Username must be at least 3 characters long."
+msgstr "Le nom d'utilisateur doit être supérieur à 3 caractères."
+
+#: .\backend\okp\auth\serializers.py:93
 msgid "Username must be less than 150 characters long."
 msgstr "Le nom d'utilisateur doit être inférieur à 150 caractères."
 
-#: .\backend\okp\auth\serializers.py:89
-msgid "Username must contain only letters, numbers, underscores, and hyphens."
-msgstr "Le nom d'utilisateur ne doit contenir que des lettres, des chiffres, des underscores et des tirets."
+#: .\backend\okp\auth\serializers.py:97
+msgid ""
+"Username must contain only letters, numbers,                   underscores, "
+"and hyphens."
+msgstr ""
+"Le nom d'utilisateur ne doit contenir que des lettres, des chiffres, des "
+"underscores et des tirets."
 
-#: .\backend\okp\auth\serializers.py:96
+#: .\backend\okp\auth\serializers.py:105
 msgid "First name must be less than 150 characters long."
 msgstr "Le prénom doit être inférieur à 150 caractères."
 
-#: .\backend\okp\auth\serializers.py:103
+#: .\backend\okp\auth\serializers.py:112
 msgid "Last name must be less than 150 characters long."
 msgstr "Le nom doit être inférieur à 150 caractères."
 
-#: .\backend\okp\auth\serializers.py:110
+#: .\backend\okp\auth\serializers.py:119
 msgid "You must accept the terms of service."
 msgstr "Vous devez accepter les conditions d'utilisation."
 
-#: .\backend\okp\auth\serializers.py:117
+#: .\backend\okp\auth\serializers.py:126
 msgid "Password fields didn't match."
 msgstr "Les champs de mot de passe ne correspondent pas."
 
 #: .\backend\okp\contrib\blog\apps.py:8
+#: .\backend\okp\contrib\blog\models.py:54
+#: .\backend\okp\contrib\blog\models.py:132
 msgid "Blog"
 msgstr "Blog"
+
+#: .\backend\okp\contrib\blog\models.py:16
+#: .\backend\okp\contrib\blog\models.py:69
+#: .\backend\okp\contrib\blog\models.py:102
+msgid "Name"
+msgstr "Nom"
+
+#: .\backend\okp\contrib\blog\models.py:29
+#: .\backend\okp\contrib\blog\models.py:82
+msgid "Description"
+msgstr "Description"
+
+#: .\backend\okp\contrib\blog\models.py:33
+msgid "Total Posts"
+msgstr "Total d'articles"
+
+#: .\backend\okp\contrib\blog\models.py:37
+#: .\backend\okp\contrib\blog\models.py:191
+msgid "Total Comments"
+msgstr "Total de commentaires"
+
+#: .\backend\okp\contrib\blog\models.py:41
+msgid "Is Active"
+msgstr "Actif"
+
+#: .\backend\okp\contrib\blog\models.py:55
+msgid "Blogs"
+msgstr "Blogs"
+
+#: .\backend\okp\contrib\blog\models.py:87
+msgid "Blog Category"
+msgstr "Catégorie"
+
+#: .\backend\okp\contrib\blog\models.py:88
+msgid "Blog Categories"
+msgstr "Catégories"
+
+#: .\backend\okp\contrib\blog\models.py:116
+msgid "Blog Tag"
+msgstr "Mot-clé"
+
+#: .\backend\okp\contrib\blog\models.py:117
+msgid "Blog Tags"
+msgstr "Mot-clés"
+
+#: .\backend\okp\contrib\blog\models.py:138
+#: .\backend\okp\contrib\blog\models.py:247
+msgid "Author"
+msgstr "Auteur"
+
+#: .\backend\okp\contrib\blog\models.py:145
+msgid "Category"
+msgstr "Catégorie"
+
+#: .\backend\okp\contrib\blog\models.py:153
+msgid "Tags"
+msgstr "Mots-clés"
+
+#: .\backend\okp\contrib\blog\models.py:158
+msgid "Title"
+msgstr "Titre"
+
+#: .\backend\okp\contrib\blog\models.py:187
+#: .\backend\okp\contrib\blog\models.py:253
+msgid "Content"
+msgstr "Contenu"
+
+#: .\backend\okp\contrib\blog\models.py:195
+msgid "Is Commentable"
+msgstr "Est commentable"
+
+#: .\backend\okp\contrib\blog\models.py:197
+msgid "Enable comments for this post."
+msgstr "Activer les commentaires pour cet article"
+
+#: .\backend\okp\contrib\blog\models.py:200
+msgid "Is Comment Moderated"
+msgstr "Est modéré"
+
+#: .\backend\okp\contrib\blog\models.py:202
+msgid "Comments must be approved before being visible."
+msgstr "Les commentaires doivent être approuvés avant d'être visibles."
+
+#: .\backend\okp\contrib\blog\models.py:205
+msgid "Is Published"
+msgstr "Est publié"
+
+#: .\backend\okp\contrib\blog\models.py:209
+msgid "Published At"
+msgstr "Publié le"
+
+#: .\backend\okp\contrib\blog\models.py:223
+msgid "Blog Post"
+msgstr "Article"
+
+#: .\backend\okp\contrib\blog\models.py:224
+msgid "Blog Posts"
+msgstr "Articles"
+
+#: .\backend\okp\contrib\blog\models.py:241
+msgid "Post"
+msgstr "Article"
+
+#: .\backend\okp\contrib\blog\models.py:257
+msgid "Is Visible"
+msgstr "Visible"
+
+#: .\backend\okp\contrib\blog\models.py:270
+msgid "Blog Comment"
+msgstr "Commentaire"
+
+#: .\backend\okp\contrib\blog\models.py:271
+msgid "Blog Comments"
+msgstr "Commentaires"
 
 #: .\backend\okp\contrib\courrier\apps.py:8
 msgid "Courrier"
