@@ -245,5 +245,12 @@ OKP_ADMIN_ORDER_MODELS = {
         "OkpUser": 1,
         "OkpGroup": 2,
         "OkpAuthToken": 3,
-    }
+    },
+    "okp_blog": {
+        "OkpBlog": 1,
+        "OkpBlogCategory": 2,
+        "OkpBlogTag": 3,
+        "OkpBlogPost": 4,
+        "OkpBlogPostComment": 5,
+    },
 }
