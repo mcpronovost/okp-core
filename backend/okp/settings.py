@@ -69,11 +69,14 @@ MIDDLEWARE = [
 ALLOWED_HOSTS = ["*"]
 
 CORS_ALLOWED_ORIGINS = [
+    "http://localhost",
     "http://localhost:8000",
     "http://localhost:5173",
 ]
 
 CORS_ALLOW_ALL_ORIGINS = False
+
+CORS_ALLOW_CREDENTIALS = True
 
 
 # Auth
@@ -129,6 +132,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "django.template.context_processors.i18n",
             ],
         },
     },

@@ -1,114 +1,70 @@
-import { useState } from "react";
-import axios from "axios";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "./assets/react.svg";
-import "./App.css";
+import { useEffect, useState } from "react";
+import { findRoute } from "@/services/router";
+import Loading from "@/views/Loading";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [token, setToken] = useState(null);
+  const lang = document.documentElement.lang;
+  const uri = window.location.pathname.replace(/^\/[a-z]{2}\//, "");
+  const [OkpView, setOkpView] = useState(null);
+  const [viewProps, setViewProps] = useState({});
+  const [viewParams, setViewParams] = useState({});
 
-  const handleLogin = () => {
-    axios
-      .post(
-        "http://localhost:8000/api/v1/auth/login/",
-        {
-          username: "mc",
-          password: "1",
-        },
-        {
-          headers: {
-            "Accept-CH": "Sec-CH-UA-Platform",
-          },
-        }
-      )
-      .then((response) => {
-        if (response.status !== 200) {
-          throw new Error({
-            message: "Login failed",
-            status: response.status,
-          });
-        }
-        setToken(response.data.token);
-      })
-      .catch((e) => {
-        console.log(">> error : ", e.response.data);
-      });
+  const doSetView = async () => {
+    /**
+     * Find the route by matching the URI to translations
+     */
+    const route = findRoute(uri, lang);
+
+    /**
+     * Redirect to 404 if no route is found
+     */
+    if (!route) {
+      return window.location.href = `/${lang}/404`;
+    }
+
+    try {
+      /**
+       * Get the view component
+       */
+      const [_, { view, auth, props, params }] = route;
+      const viewModule = await import(`./views/${view}.jsx`);
+      setViewProps(props || {});
+      setViewParams(params || {});
+
+      console.log("> viewProps : ", viewProps);
+      console.log("> viewParams : ", viewParams);
+
+      /**
+       * Get the user data
+       */
+      // const me = await usersApi.me();
+
+      /**
+       * Redirect to 403 if the route is protected and the user is not authenticated
+       */
+      // if (auth && !me) {
+      //   return Astro.redirect(`/${lang}/403`);
+      // }
+
+      /**
+       * Set the view component
+       */
+      setOkpView(() => viewModule.default);
+    } catch (error) {
+      console.error("Failed to load view:", error);
+      // window.location.href = `/${lang}/404`;
+    }
   };
 
-  const handleLogout = () => {
-    axios
-      .post("http://localhost:8000/api/v1/auth/logout/", null, {
-        headers: {
-          Authorization: `okp ${token}`,
-        },
-      })
-      .then((response) => {
-        if (response.status !== 204) {
-          throw new Error({
-            message: "Logout failed",
-            status: response.status,
-          });
-        }
-        setToken(null);
-      })
-      .catch((e) => {
-        console.log(">> error : ", e.response.data);
-      });
-  };
+  useEffect(() => {
+    doSetView();
+  }, []);
 
-  const handleRegister = () => {
-    axios
-      .post(
-        "http://localhost:8000/api/v1/auth/register/",
-        {},
-        {
-          headers: {
-            "Accept-CH": "Sec-CH-UA-Platform",
-          },
-        }
-      )
-      .then((response) => {
-        if (response.status !== 201) {
-          throw new Error({
-            message: "Register failed",
-            status: response.status,
-          });
-        }
-        setToken(response.data.token);
-      })
-      .catch((e) => {
-        console.log(">> error : ", e.response.data);
-      });
-  };
+  if (OkpView) {
+    return <OkpView {...viewProps} {...viewParams} />;
+  }
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>OKP</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <button onClick={handleLogin}>Login</button>
-        <button onClick={handleLogout}>Logout</button>
-        <button onClick={handleRegister}>Register</button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  );
+  return <Loading />;
 }
 
 export default App;
