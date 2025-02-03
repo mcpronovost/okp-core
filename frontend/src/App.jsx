@@ -31,9 +31,6 @@ function App() {
       setViewProps(props || {});
       setViewParams(params || {});
 
-      console.log("> viewProps : ", viewProps);
-      console.log("> viewParams : ", viewParams);
-
       /**
        * Get the user data
        */
