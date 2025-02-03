@@ -1,5 +1,5 @@
 export const API = {
-    URL: `${import.meta.env.VITE_PROTOCOL}://${import.meta.env.VITE_API}`,
+    URL: `${import.meta.env.VITE_API_PROTOCOL}://${import.meta.env.VITE_API_URL}`,
     STORAGE: {
         RAT: "okp-rat",
         USER: "okp-user",
