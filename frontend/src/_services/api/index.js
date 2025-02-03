@@ -114,4 +114,4 @@ export const api = Object.fromEntries(
   ])
 );
 
-export * from "./auth";
+export { authApi } from "./endpoints/auth";
