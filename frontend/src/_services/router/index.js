@@ -36,7 +36,15 @@ export const routes = {
       fr: "parametres",
     },
   },
+  errors: {
+    view: "errors/404",
+    paths: {
+      en: "404",
+      fr: "404",
+    },
+  },
 };
+
 
 /**
  * Recursively finds a route by matching the URI to translations in the route map

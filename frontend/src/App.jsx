@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import { findRoute } from "@/services/router";
 import Loading from "@/views/Loading";
 
+const views = import.meta.glob("./views/**/*.jsx", {
+    eager: false,
+});
+
 function App() {
   const lang = document.documentElement.lang;
   const uri = window.location.pathname.replace(/^\/[a-z]{2}\//, "");
@@ -10,29 +14,27 @@ function App() {
   const [viewParams, setViewParams] = useState({});
 
   const doSetView = async () => {
-    /**
-     * Find the route by matching the URI to translations
-     */
     const route = findRoute(uri, lang);
 
-    /**
-     * Redirect to 404 if no route is found
-     */
     if (!route) {
       return window.location.href = `/${lang}/404`;
     }
 
     try {
-      /**
-       * Get the view component
-       */
       const [_, { view, auth, props, params }] = route;
-      const viewModule = await import(`./views/${view}.jsx`);
+      const viewPath = `./views/${view}.jsx`;
+
+      if (!views[viewPath]) {
+        return window.location.href = `/${lang}/404`;
+      }
+
+      const viewModule = await views[viewPath]();
+
+      /**
+       * Set the view props and params
+       */
       setViewProps(props || {});
       setViewParams(params || {});
-
-      console.log("> viewProps : ", viewProps);
-      console.log("> viewParams : ", viewParams);
 
       /**
        * Get the user data
