@@ -1,49 +1,13 @@
 import { LANG_DEFAULT } from "@/services/utils/constants";
-// import { routesAuth } from "./routes/auth";
-// import { routesManagement } from "./routes/management";
 
 /**
- * Global Routes
+ * Automatically import all route files and combine them into a single object
+ * @returns {Object} - A single object containing all routes
  */
-export const routes = {
-  home: {
-    view: "Home",
-    paths: {
-      en: "",
-      fr: "",
-    },
-  },
-  devblog: {
-    view: "Devblog",
-    paths: {
-      en: "devblog",
-      fr: "devblog",
-    },
-  },
-  faq: {
-    view: "FAQ",
-    paths: {
-      en: "faq",
-      fr: "faq",
-    },
-  },
-  // ...routesAuth,
-  // ...routesManagement,
-  settings: {
-    view: "Settings",
-    paths: {
-      en: "settings",
-      fr: "parametres",
-    },
-  },
-  errors: {
-    view: "errors/404",
-    paths: {
-      en: "404",
-      fr: "404",
-    },
-  },
-};
+const routeModules = import.meta.glob("./routes/*.js", { eager: true });
+export const routes = Object.values(routeModules).reduce((acc, module) => {
+  return { ...acc, ...Object.values(module)[0] };
+}, {});
 
 
 /**
@@ -176,6 +140,11 @@ export const findLocaleRoute = (uri, fromLang, toLang, additionalParams) => {
   return `/${toLang}/${toPath}`;
 };
 
+/**
+ * Get the route object for the target language
+ * @param toLang - The target language code to use for the route (e.g., "en" or "fr")
+ * @returns An object containing the route functions for the target language
+ */
 export const getRoute = (toLang = LANG_DEFAULT) => {
   return {
     r: (uri, params) => findLocaleRoute(uri, "en", toLang, params),

@@ -1,5 +1,8 @@
 import { api } from "@/services/api";
 
+/**
+ * API client for authentication endpoints
+ */
 export const authApi = {
   login: (data) => api.post("/auth/login/", data),
   logout: () => api.post("/auth/logout/", null),
@@ -7,7 +10,9 @@ export const authApi = {
   register: (data) => api.post("/auth/register/", data),
 };
 
-// Example login usage
+/**
+ * EXAMPLE : Handle login
+ */
 export const handleLogin = async () => {
   const r = await authApi.login({
     username: "mc",
@@ -19,7 +24,9 @@ export const handleLogin = async () => {
   console.log(">> response : ", r.data);
 };
 
-// Example logout usage
+/**
+ * EXAMPLE : Handle logout
+ */
 export const handleLogout = async () => {
   const r = await authApi.logout();
   if (r.status !== 204) {
@@ -28,7 +35,9 @@ export const handleLogout = async () => {
   console.log(">> response : ", r.data);
 };
 
-// Example register usage
+/**
+ * EXAMPLE : Handle register
+ */
 export const handleRegister = async () => {
   const r = await authApi.register({
     username: "mc",
