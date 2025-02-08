@@ -20,6 +20,7 @@ export const routes = Object.values(routeModules).reduce((acc, module) => {
  */
 export const findRoute = (uri, lang, routesList, parentPath = "") => {
   if (!routesList) routesList = routes;
+  if (uri === "/") uri = "";
   const params = {};
 
   for (const [key, route] of Object.entries(routesList)) {
@@ -88,10 +89,11 @@ export const findRoute = (uri, lang, routesList, parentPath = "") => {
       }
     }
   }
+
   return [
     uri,
     {
-      view: "common/NotFound",
+      view: "errors/404",
       auth: false,
       props: {},
       params: {},
