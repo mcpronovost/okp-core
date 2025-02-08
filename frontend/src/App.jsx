@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { findRoute } from "@/services/router";
+import { LANGUAGES } from "@/services/utils/constants";
 import Loading from "@/views/Loading";
 
 const views = import.meta.glob("./views/**/*.jsx", {
@@ -8,7 +9,15 @@ const views = import.meta.glob("./views/**/*.jsx", {
 
 function App() {
   const lang = document.documentElement.lang;
-  const uri = window.location.pathname.replace(/^\/[a-z]{2}\//, "");
+  const path = window.location.pathname
+  const [, langCode, ...uriParts] = path.split(/^\/([a-z]{2})\//);
+  const uri = uriParts.join("/");
+
+  // If the language is not supported, redirect to the default language
+  if (!langCode || !LANGUAGES.includes(langCode)) {
+    window.location.href = `/${lang}/${uri || path.replace(/^\//, "")}`;
+  }
+
   const [OkpView, setOkpView] = useState(null);
   const [viewProps, setViewProps] = useState({});
   const [viewParams, setViewParams] = useState({});
@@ -17,6 +26,7 @@ function App() {
     const route = findRoute(uri, lang);
 
     if (!route) {
+      // If the route is not found, redirect to the 404 page
       return window.location.href = `/${lang}/404`;
     }
 
@@ -25,6 +35,7 @@ function App() {
       const viewPath = `./views/${view}.jsx`;
 
       if (!views[viewPath]) {
+        // If the view is not found, redirect to the 404 page
         return window.location.href = `/${lang}/404`;
       }
 
