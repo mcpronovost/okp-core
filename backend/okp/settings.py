@@ -101,7 +101,7 @@ REST_FRAMEWORK = {
 KNOX_TOKEN_MODEL = "okp_auth.OkpAuthToken"
 
 REST_KNOX = {
-    "TOKEN_LIMIT_PER_USER": 2,
+    "TOKEN_LIMIT_PER_USER": 4,
     "USER_SERIALIZER": "knox.serializers.UserSerializer",
     "AUTH_HEADER_PREFIX": "okp",
     "TOKEN_MODEL": KNOX_TOKEN_MODEL,
@@ -195,7 +195,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = "en"
+LANGUAGE_CODE = os.getenv("LANGUAGE")
 
 LANGUAGES = [
     ("en", "English"),
@@ -206,7 +206,7 @@ LOCALE_PATHS = [
     BASE_DIR / "locale",
 ]
 
-TIME_ZONE = "America/Toronto"
+TIME_ZONE = os.getenv("TIME_ZONE")
 
 USE_I18N = True
 
