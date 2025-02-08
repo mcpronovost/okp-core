@@ -1,15 +1,15 @@
 {
   "name": "okp-core",
-  "version": "0.0.1",
-  "author": "mcpronovost <mcpronovostkurkiency@gmail.com>",
   "description": "Core project for okp.",
+  "version": "0.1.0",
+  "author": "mcpronovost <mcpronovostkurkiency@gmail.com>",
   "homepage": "https://github.com/mcpronovost/okp-core",
   "repository": {
     "type": "git",
     "url": "https://github.com/mcpronovost/okp-core.git"
   },
   "type": "module",
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -23,7 +23,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.17.0",
+    "@eslint/js": "^9.20.0",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",
