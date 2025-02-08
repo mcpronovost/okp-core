@@ -27,4 +27,11 @@ export const routes = {
       fr: "parametres",
     },
   },
+  notfound: {
+    view: "errors/404",
+    paths: {
+      en: "404",
+      fr: "404",
+    },
+  },
 };
