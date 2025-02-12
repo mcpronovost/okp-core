@@ -1,8 +1,8 @@
 {
   "name": "okp-core",
   "description": "Core project for okp.",
-  "version": "0.1.0",
-  "author": "mcpronovost <mcpronovostkurkiency@gmail.com>",
+  "version": "0.2.0",
+  "author": "M-C Pronovost",
   "homepage": "https://github.com/mcpronovost/okp-core",
   "repository": {
     "type": "git",
@@ -15,9 +15,11 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite build && vite preview",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "check-translations": "check-translations --languages=en,fr --src=./src --locales=./src/_services/locales"
   },
   "dependencies": {
+    "@mcpronovost/okp-i18n": "^0.1.0",
     "@mcpronovost/okp-router": "^0.2.5",
     "axios": "^1.7.9",
     "react": "^19.0.0",
