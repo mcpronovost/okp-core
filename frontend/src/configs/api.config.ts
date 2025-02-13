@@ -1,4 +1,6 @@
-export const API_CONFIG = {
+import type { ApiConfigType, HttpMethodType } from "@/types";
+
+export const API_CONFIG: ApiConfigType = {
   development: {
     url: `${import.meta.env.VITE_API_PROTOCOL}://${
       import.meta.env.VITE_API_URL
@@ -21,12 +23,12 @@ export const API_CONFIG = {
     timeout: 5000,
     retryAttempts: 3,
   },
-}[import.meta.env.MODE];
+}[import.meta.env.MODE as "development" | "production"];
 
-export const HTTP_METHODS = {
+export const HTTP_METHODS: Record<HttpMethodType, HttpMethodType> = {
   GET: "GET",
   POST: "POST",
   PUT: "PUT",
   PATCH: "PATCH",
   DELETE: "DELETE",
-};
+} as const;

@@ -27,6 +27,7 @@ export default ({ mode }) => {
         "@/assets": "/src/assets",
         "@/configs": "/src/configs",
         "@/services": "/src/_services",
+        "@/types": "/src/types",
         "@": "/src",
       },
     },
