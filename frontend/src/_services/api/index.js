@@ -1,5 +1,6 @@
 import axios from "axios";
-import { API, HTTP_METHODS } from "@/services/utils/constants";
+import { API_CONFIG } from "@/configs";
+import { HTTP_METHODS } from "@/services/utils/constants";
 
 const getCookie = (name) => document.cookie?.match(`${name}=([^;]+)`)?.[1];
 
@@ -10,14 +11,14 @@ const defaultHeaders = {
   "Content-Type": "application/json",
   "Accept": "application/json",
   "Accept-CH": "Sec-CH-UA-Platform",
-  "x-okp-api-version": API.VERSION,
+  "x-okp-api-version": API_CONFIG.version,
 };
 
 /**
  * Axios instance configured for client-side API requests
  */
 export const doAxios = axios.create({
-  baseURL: `${API.URL}/v${API.VERSION}/`,
+  baseURL: `${API_CONFIG.url}/v${API_CONFIG.version}/`,
   withCredentials: true,
   headers: defaultHeaders,
 });
@@ -32,7 +33,7 @@ const addAuthorizationHeader = (headers) => {
   headers["Accept-Language"] = window?.document?.documentElement?.lang || globalThis.currentLang;
 
   // Add authorization token if exists
-  const authToken = getCookie(API.STORAGE.RAT);
+  const authToken = getCookie(API_CONFIG.storage.rat);
   if (authToken) headers.Authorization = `OKP ${authToken}`;
   
   // Add CSRF token if exists

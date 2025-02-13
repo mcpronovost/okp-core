@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getView } from "@mcpronovost/okp-router";
-import Loading from "@/views/Loading";
+import Loading from "@/pages/Loading";
 
 function App() {
   const [OkpView, setOkpView] = useState(null);

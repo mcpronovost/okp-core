@@ -24,7 +24,8 @@ export default ({ mode }) => {
     },
     resolve: {
       alias: {
-        "@/assets": "/src/_assets",
+        "@/assets": "/src/assets",
+        "@/configs": "/src/configs",
         "@/services": "/src/_services",
         "@": "/src",
       },
