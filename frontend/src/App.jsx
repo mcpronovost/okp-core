@@ -1,30 +1,17 @@
-import { useEffect, useState } from "react";
-import { getView } from "@mcpronovost/okp-router";
+import { useRouter } from "@/services/router";
 import Loading from "@/pages/Loading";
+import Error404 from "@/pages/errors/404";
 
-function App() {
-  const [OkpView, setOkpView] = useState(null);
-  const [viewProps, setViewProps] = useState({});
-  const [viewParams, setViewParams] = useState({});
+export default function App() {
+  const { View, props, params, isLoading } = useRouter();
 
-  const doSetView = async () => {
-    const { viewModule, props, params } = await getView();
-
-    setViewProps(props || {});
-    setViewParams(params || {});
-
-    setOkpView(() => viewModule.default);
-  };
-
-  useEffect(() => {
-    doSetView();
-  }, []);
-
-  if (OkpView) {
-    return <OkpView {...viewProps} {...viewParams} />;
+  if (isLoading) {
+    return <Loading />;
   }
 
-  return <Loading />;
-}
+  if (!View) {
+    return <Error404 />;
+  }
 
-export default App;
+  return <View {...props} {...params} />;
+}

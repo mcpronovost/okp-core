@@ -26,7 +26,8 @@ export default ({ mode }) => {
       alias: {
         "@/assets": "/src/assets",
         "@/configs": "/src/configs",
-        "@/services": "/src/_services",
+        "@/i18n": "/src/services/i18n",
+        "@/router": "/src/services/router",
         "@/types": "/src/types",
         "@": "/src",
       },

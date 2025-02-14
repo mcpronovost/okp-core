@@ -6,7 +6,7 @@ export interface ApiStorageConfigType {
 export interface ApiConfigType {
   url: string;
   storage: ApiStorageConfigType;
-  version: string;
+  version: number;
   timeout: number;
   retryAttempts: number;
 }
