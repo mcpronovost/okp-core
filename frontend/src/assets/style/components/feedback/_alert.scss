@@ -1,0 +1,110 @@
+@use "../../variables/colours" as *;
+
+.okp-alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 12px;
+  font-size: 1rem;
+  line-height: 1;
+
+  &-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin: 0 8px 0 3px;
+  }
+
+  &-content {
+    overflow: hidden;
+    flex: 1;
+    padding: 0.15rem 0 0;
+    margin: 0 8px;
+
+    &-title {
+      font-family: "Bebas Neue", sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      word-break: break-word;
+      margin: 4px 0;
+    }
+
+    &-message {
+      word-break: break-word;
+      margin: 4px 0;
+      font-size: 1rem;
+    }
+  }
+
+  &-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    margin-left: 8px;
+    padding: 4px;
+    transition: filter 0.3s;
+
+    &:hover {
+      cursor: pointer;
+      filter: brightness(1.5);
+    }
+
+    &:active {
+      transform: scale(0.9);
+      filter: brightness(0.8);
+    }
+  }
+
+  &-variant {
+    @mixin variant($colour) {
+      border-left: 4px solid color-mix(in srgb, $colour 40%, $okp-card-bg);
+      background: color-mix(in srgb, $colour 15%, $okp-card-bg);
+      color: color-mix(in srgb, $colour 50%, $okp-card-fg);
+    }
+
+    &-default {
+      border-left: 4px solid color-mix(in srgb, $okp-card-fg 30%, $okp-card-bg);
+      background: $okp-card-bg;
+      color: $okp-card-fg;
+    }
+
+    &-success {
+      @include variant($okp-success);
+    }
+    &-error {
+      @include variant($okp-error);
+    }
+    &-warning {
+      @include variant($okp-warning);
+    }
+    &-info {
+      @include variant($okp-info);
+    }
+
+    &-tier0 {
+      @include variant($okp-tier0);
+    }
+    &-tier1 {
+      @include variant($okp-tier1);
+    }
+    &-tier2 {
+      @include variant($okp-tier2);
+    }
+    &-tier3 {
+      @include variant($okp-tier3);
+    }
+    &-tier4 {
+      @include variant($okp-tier4);
+    }
+    &-tier5 {
+      @include variant($okp-tier5);
+    }
+    &-tier6 {
+      @include variant($okp-tier6);
+    }
+  }
+}

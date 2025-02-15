@@ -1,0 +1,50 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--okp-bg);
+  color: var(--okp-fg);
+  font-size: 18px;
+  line-height: 1.2;
+  font-family: "SofiaSans", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-size: 100%;
+  line-height: 1.2;
+
+  &::after {
+    display: block;
+    z-index: 500;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    // background-image: url("../img/noise.png");
+    // background-repeat: repeat;
+    content: "";
+    opacity: 0.4;
+    pointer-events: none;
+  }
+}
+
+#okp {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.okp-fullview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 64px);
+  text-align: center;
+}

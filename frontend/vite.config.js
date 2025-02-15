@@ -18,7 +18,12 @@ export default ({ mode }) => {
         output: {
           entryFileNames: "static/js/[name]-[hash].js",
           chunkFileNames: "static/js/[name]-[hash].js",
-          assetFileNames: "static/[ext]/[name]-[hash].[ext]",
+          assetFileNames: ({ names }) => {
+            if (/\.(ttf|woff|woff2|eot)$/.test(names?.[0] ?? "")) {
+              return "static/fonts/[name][extname]";
+            }
+            return "static/[ext]/[name]-[hash].[ext]";
+          },
         },
       },
     },

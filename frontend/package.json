@@ -22,6 +22,8 @@
     "@mcpronovost/okp-i18n": "file:../../okp-i18n",
     "@mcpronovost/okp-router": "file:../../okp-router",
     "axios": "^1.7.9",
+    "classnames": "^2.5.1",
+    "lucide-react": "^0.475.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
@@ -35,7 +37,9 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.18",
     "globals": "^15.14.0",
+    "prettier-plugin-css-order": "^2.1.2",
     "sass-embedded": "^1.83.4",
+    "typescript": "^5.7.3",
     "vite": "^6.1.0"
   }
 }
