@@ -1,7 +1,19 @@
+"""Module to start development servers."""
+
 import os
 import subprocess
 import sys
 from pathlib import Path
+
+
+def terminate_processes(backend_process, frontend_process):
+    """
+    Terminate the specified backend and frontend processes.
+    """
+    if "backend_process" in locals():
+        backend_process.terminate()
+    if "frontend_process" in locals():
+        frontend_process.terminate()
 
 
 def start_server(python_exec, npm_exec, backend_path, frontend_path):
@@ -29,15 +41,14 @@ def start_server(python_exec, npm_exec, backend_path, frontend_path):
 
     except KeyboardInterrupt:
         print("\nStopping servers...")
-        backend_process.terminate()
-        frontend_process.terminate()
+        terminate_processes(backend_process, frontend_process)
 
-    except Exception as e:
-        print(f"Error: {e}")
-        if "backend_process" in locals():
-            backend_process.terminate()
-        if "frontend_process" in locals():
-            frontend_process.terminate()
+    except subprocess.SubprocessError as e:
+        print(f"Subprocess error: {e}")
+        terminate_processes(backend_process, frontend_process)
+    except OSError as e:
+        print(f"OS error: {e}")
+        terminate_processes(backend_process, frontend_process)
 
 
 def run_backend(python_exec, backend_path, backend_args):
@@ -53,12 +64,14 @@ def run_backend(python_exec, backend_path, backend_args):
 
     except KeyboardInterrupt:
         print("\nStopping server...")
-        backend_process.terminate()
+        terminate_processes(backend_process, None)
 
-    except Exception as e:
-        print(f"Error: {e}")
-        if "backend_process" in locals():
-            backend_process.terminate()
+    except subprocess.SubprocessError as e:
+        print(f"Subprocess error: {e}")
+        terminate_processes(backend_process, None)
+    except OSError as e:
+        print(f"OS error: {e}")
+        terminate_processes(backend_process, None)
 
 
 def run_pytest():
@@ -66,8 +79,12 @@ def run_pytest():
     Run the tests for the backend.
     """
     print("\033[93mRunning pytest...\033[0m")
-    subprocess.run("pytest", shell=True)
-    subprocess.run("coverage erase", shell=True)
+    subprocess.run("pytest -c backend/pytest.ini", shell=True, check=True)
+    subprocess.run(
+        "coverage erase --rcfile=backend/.coverage",
+        shell=True,
+        check=True
+    )
 
 
 def run_tests():
@@ -75,9 +92,18 @@ def run_tests():
     Run the tests for the backend.
     """
     print("\033[93mRunning pylint...\033[0m")
-    subprocess.run("pylint --load-plugins pylint_django --django-settings-module=okp.settings backend/", shell=True)
+    subprocess.run(
+        "pylint --rcfile=backend/.pylintrc --load-plugins pylint_django "
+        "--django-settings-module=okp.settings backend/",
+        shell=True,
+        check=True,
+    )
     print("\033[93mRunning flake8...\033[0m")
-    subprocess.run("flake8 backend/", shell=True)
+    subprocess.run(
+        "flake8 --config=backend/.flake8 backend/",
+        shell=True,
+        check=True
+    )
     run_pytest()
 
 
@@ -85,9 +111,9 @@ def main():
     """
     Main function to start development servers or run backend with arguments.
     """
-    BASE_DIR = Path(__file__).resolve().parent
-    backend_path = os.path.join(BASE_DIR)
-    frontend_path = os.path.join(BASE_DIR, "frontend")
+    base_path = Path(__file__).resolve().parent
+    backend_path = os.path.join(base_path)
+    frontend_path = os.path.join(base_path, "frontend")
 
     # Get the current Python interpreter path
     python_exec = sys.executable
