@@ -19,8 +19,8 @@
     "check-translations": "check-translations --languages=en,fr --src=./src --locales=./src/_services/locales"
   },
   "dependencies": {
-    "@mcpronovost/okp-i18n": "^0.1.2",
-    "@mcpronovost/okp-router": "^0.3.1",
+    "@mcpronovost/okp-i18n": "file:../../okp-i18n",
+    "@mcpronovost/okp-router": "file:../../okp-router",
     "axios": "^1.7.9",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
