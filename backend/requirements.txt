@@ -29,7 +29,7 @@ pylint-plugin-utils==0.8.2
 pytest==8.3.5
 pytest-cov==6.0.0
 pytest-django==4.10.0
-python-dotenv==1.0.1
+python-dotenv==1.1.1
 PyYAML==6.0.2
 referencing==0.36.2
 rpds-py==0.23.1
