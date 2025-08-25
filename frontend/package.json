@@ -23,7 +23,7 @@
     "@mcpronovost/okp-router": "file:../../okp-router",
     "axios": "^1.7.9",
     "classnames": "^2.5.1",
-    "lucide-react": "^0.539.0",
+    "lucide-react": "^0.541.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
